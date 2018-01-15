@@ -1,0 +1,31 @@
+Comments on the '5 Questions':
+
+1. Is there a variant of Kuratowski's theorem for surfaces of genus != 0?
+
+- This would be "A graph can be embedded on the __ iff it has no minor __"
+- May be useful to look at K5, K33 on the double torus: Maximal genus
+- This is actually an area of area research: Forbidden Minor theory
+
+2. What algorithms exist to find all facial cycles of a graph?
+
+- Edmonds 1960
+- GAO chapter 14/15
+- Schneider 2015 (Planar)
+
+3. What algorithms exist to approximate or bound the genus of a graph?
+
+- Read GAO chapter 15
+- Use Euler Characteristic and Related formulas (ie: can't have 0 faces)
+- Beyond The Graph Genus
+
+4. How do the rules for determining if a graph embedding is possibile differ between orientable and non-orientable surfaces?
+
+- Different Genus formulas for each type of surface
+- GAO chapter 15/16
+- Non orientable genus N is same as a sphere with N cross caps
+
+5. What theory exists for showing an embedding exists for some graph G on some surface S?
+
+- 1979 Algorithm in O(n^O(g)) time
+- If number of faces possible, graph May exist
+- Can also use combinatorial mapping (Edmonds 1960) here

@@ -1,0 +1,29 @@
+Relevant Project Literature:
+
+1. Kocay, William, and Donald L. Kreher. Graphs, algorithms, and optimization. CRC Press, 2016.
+
+2. Thomassen, Carsten. "The graph genus problem is NP-complete." Journal of Algorithms 10, no. 4 (1989): 568-576.
+
+3. Kawarabayashi, Ken-ichi, and Anastasios Sidiropoulos. "Beyond the euler characteristic: approximating the genus of general graphs." In Proceedings of the forty-seventh annual ACM symposium on Theory of computing, pp. 675-682. ACM, 2015.
+
+4. Gagarin, Andrei Vladimirovich. "Graph embedding algorithms." (2003).
+
+5. de Verdière, Éric Colin. "Computational topology of graphs on surfaces." arXiv preprint arXiv:1702.05358 (2017).
+
+6. White, Arthur T. "Topological Graph Theory: A Personal Account." Electronic Notes in Discrete Mathematics 31 (2008): 5-15.
+
+7. Edmonds J., A Combinatorial Representation for Polyhedral Surfaces, Notices Amer. Math. Soc., vol. 7, 1960
+
+8. Cai, Hongyun, Vincent W. Zheng, and Kevin Chen-Chuan Chang. "A Comprehensive Survey of Graph Embedding: Problems, Techniques and Applications." arXiv preprint arXiv:1709.07604 (2017).
+
+9. Schneider, Sophie, and Ivo F. Sbalzarini. "Finding faces in a planar embedding of a graph."
+
+10. Kocay, William, Daniel Neilson, and Ryan Szypowski. "Drawing graphs on the torus." Ars Combinatoria 59, no. 2 (2001): 259-277.
+
+11. Lando, Sergei K., and Alexander K. Zvonkin. Graphs on surfaces and their applications. Vol. 141. Springer Science & Business Media, 2013.
+
+12. Filotti, I. S., Gary L. Miller, and John Reif. "On determining the genus of a graph in O (v O (g)) steps (Preliminary Report)." In Proceedings of the eleventh annual ACM symposium on Theory of computing, pp. 27-37. ACM, 1979.
+
+13. Gagarin, Andrei, Wendy Myrvold, and John Chambers. "Forbidden minors and subdivisions for toroidal graphs with no K3, 3's." Electronic Notes in Discrete Mathematics 22 (2005): 151-156.
+
+14. Mattman, Thomas W. "Forbidden minors: Finding the finite few." arXiv preprint arXiv:1608.04066 (2016).

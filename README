@@ -1,0 +1,12 @@
+This repository captures the project work accomplished during COMP 4060/7750 Winter 2018: Graph Theory. 
+
+This project is focused on problems relating to Graph Embedding on different surfaces of interest. In particular, the goal of this project is to ask questions such as the following:
+
+Given a graph G and a surface S of genus Q, does an embedding (with no crossings) exist of G on S?
+Does such an embedding need to be explicity given in order to conclude that such an embedding exists?
+Given a graph G, can the genus Q of G be bounded minimally and/or maximally?
+What interesting properties do Orientable and Non-orientable surfaces share (or not) with respect to graph embedding?
+What other aspects of Graph Theory (Forbidden Minors, Facial Cycles, among others) can be used to break new ground in this problem?
+And more...
+
+Project author: Taylor Cox (Professor: Dr. William Kocay)

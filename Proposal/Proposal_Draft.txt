@@ -1,0 +1,34 @@
+Project Proposal Draft Doc:
+
+-> Still not complete: Bake 5 questions into proposal into proper project.
+-> Current areas of interest: Forbidden Minors, Theoretically Bounded Genus, Use of Facial Cycles
+
+1. Background and Basics (Problem Statement)
+
+- Fundamentals of Topological Graph Theory
+- GAO 14-16
+- Genus, Surfaces, Orientability, Euler Characteric, Faces, etc.
+
+2. Literature
+
+- See Doc
+- Order Chronologically
+- Divided into theory (complexity theory, pure math), algorithms and applications (if any are discussed)
+
+3. Insights and Conjectures
+
+- Forbidden Minor Theorem
+- Usage of Faces/Facial Cycles
+- Theoretical Bounds (Triangulations, 0-Faces rule)
+
+4. Proposed Contributions
+
+- Bound graph genus to allow for checking with Filotti 1979
+- Orientability options for a graph's embedding
+- Instead of showing embedding, show a graph is possible with F faces?
+
+5. Programming
+
+- Forbidden Minor to bound graph genus. Goal: Bounded and Approximated Genus
+- Implement at least one existing alg, perhaps Fibotti 1979 or something newer. Goal: Grasp and Evaluate existing literature
+- Edmonds 1960 (Rotation System) on other surfaces. Goal: Study feasibility of (4)(c)
