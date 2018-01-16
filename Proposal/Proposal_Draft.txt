@@ -15,17 +15,22 @@ Project Proposal Draft Doc:
 - Order Chronologically
 - Divided into theory (complexity theory, pure math), algorithms and applications (if any are discussed)
 
-3. Insights and Conjectures
+3. Areas of Investigation
 
-- Forbidden Minor Theorem
-- Usage of Faces/Facial Cycles
-- Theoretical Bounds (Triangulations, 0-Faces rule)
+  Focus on the 5 questions:
+    - Forbidden Minors: Can Forbidden Minor Theory (ie: extension of Kuratowski's theorem) provide tools for bounding a graph's genus?
+    - Facial Cycles: Can a combinatorial embedding of a graph be provided in lieu of a rendered embedding? Are these equivalent?
+    - Fixed Parameters: Given a graph G with a surface S of genus Q, does an embedding E of G on S exist? Investigate literature here.
+    - Approximation: Can the genus of a graph Q be approximated to some acceptable error margin? Are these approximations verifiable? Can they be used to bound the genus instead?
+    - Orientability: How do problems (and solutions) in graph embedding change with respect to the (lack of) orientability of the surface in question? Different Euler characteristic. Other different properties?
 
-4. Proposed Contributions
+3. Proposed Contributions
 
-- Bound graph genus to allow for checking with Filotti 1979
+- Bound graph genus to allow for checking with Filotti 1979. Use Forbidden Minors and other approaches
 - Orientability options for a graph's embedding
 - Instead of showing embedding, show a graph is possible with F faces?
+- Other new mathematical/theoretical means for bounding or approximating genus
+- Big question: There exists a fixed-parameter tractable algorithm for the graph genus problem. If the genus of a graph can be bounded in P, then is the graph genus problem in P? Even if this is incorrect or misguided, it's worth looking into.
 
 5. Programming
 
