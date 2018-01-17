@@ -1,8 +1,8 @@
 Project Proposal Draft Doc:
 
--> Still not complete: Bake 5 questions into proposal into proper project.
 -> Current areas of interest: Forbidden Minors, Theoretically Bounded Genus, Use of Facial Cycles
 
+> read Filotti and read Thomassen then write. 
 1. Background and Basics (Problem Statement)
 
 - Fundamentals of Topological Graph Theory
