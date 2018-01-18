@@ -30,15 +30,31 @@ Email: coxt3@myumanitoba.ca}}
 
 \begin{abstract}
 
-An embedding of a graph G on some surface $\Sigma$ is a drawing of G on $\Sigma$ such that the edges of G only intersect at their endpoints, namely the vertices. The genus of a surface $\Sigma$ is the number of handles present on $\Sigma$. The genus of a graph is the minimum number of handles that must be added to $\Sigma$ in order for an embedding of G to be possible. The graph genus problem is given as follows: Given a graph G and a natural number k, determine whether G has genus k or less. In 1989, Thomassen proved that the graph genus problem is NP-Complete. However, in 1996 Mohar et al. gave a linear-time algorithm to solve the graph genus problem for a fixed k. The goal of this project is to investigate these papers and others to evaluate the current state of the graph genus problem. Approaches will then be developed to bound the genus of a graph G to a sufficiently small interval such that repeated execution of Mohar 1996 will be feasible. Therefore, the expected result of this project is a set of one or more heuristics that will reduce the search space for determining the genus of a graph.
+In 1989, Thomassen proved that the graph genus problem is NP-Complete. However, in 1999 Mohar gave a linear-time algorithm for determining whether a graph can be embedded on a specific surface. The goal of this project is to investigate these papers and others to evaluate the current state of the graph genus problem. Approaches will then be developed to bound the genus of a graph G to a sufficiently small interval such that repeated execution of Mohar 1999 will be feasible. Therefore, the expected result of this project is a set of one or more heuristics that will reduce the search space for determining the genus of a graph.
 
 \end{abstract}
 
 \begin{IEEEkeywords}
-Genus,Embedding,Surfaces
+Genus,Embedding,Surfaces,Bounding
 \end{IEEEkeywords}
 
 \section{Introduction}
+
+Problems in graph embedding lie at the intersection between Graph Theory and Topology. The embedding problem of specific interest to this project is the Graph Genus Problem. The Graph Genus Problem (GGP) is as follows: Given a graph G and a natural number k, determine whether G has a genus of k or less. A graph has genus q if G can be embedded on some surface $\Sigma$ with genus q. The genus of $\Sigma$ is the number of handles that exist on $\Sigma$ in cases where $\Sigma$ is an orientable surfaces, or the number of crosscaps in cases where $\Sigma$ is unorientable. In cases of unorientability, the genus is also referred to as the \textit{demigenus}. The attribute of particular interest to the graph genus problem is the minimum genus of G. In fact, the genus of G normally denotes the minimum genus of G. 
+
+In 1979, Filotti et al. gave a polynomial time algorithm for solving the GGP for a fixed value of k \cite{filotti}. Ten years later, Thomassen proved that the general GGP is NP-Complete \cite{thomassen}. In 2011, Myrvold et al. identified a fatal flaw in Filotti 1979, proving the algorithm's incorrectness \cite{myrvold-kocay}. However, Mohar was able to give a linear time algorithm for the fixed-k GGP in 1999 \cite{mohar}. Despite its difficult nature, Mohar 1999 has not been disproven. 
+
+The goal of this project is to leverage Mohar 1999 for the purpose of determining the genus of a graph with a non-fixed k. This does not mean that this project intends to prove the GGP is in P. The intension of this project is to develop heuristic approaches to bound the genus of a graph to a sufficiently small range such that repeated execution of Mohar 1999 will be feasible. The specific goals of this project are as follows:
+
+\begin{enumerate}
+\item Evaluate the current state-of-the-art with respect to the GGP
+\item Investigate the theoretical bounds for the genus of a graph
+\item Determine methods for ruling-out or ruling-in the genus of a graph using Graph Minor Theory
+\end{enumerate}
+
+Part (1) will be accomplished by conducting a thorough literature survey, with initial points of investigation identified further in this work. Specific works in the GGP literature will provide insight into part (2). Part (2) will use tools including the Euler-Poincair\'e formula and theoretical findings from authors including Xuong 1979 \cite{xuong} to limit the search space for determining the genus of a graph. Finally, part (3) will use existing findings in Graph Minor Theory to further limit the search space for a graph's genus. This project will capitalize on findings similar to Kuratowski's theorem to further ascertain which surfaces a graph can or cannot be embedded on.
+
+The remainder of this proposal is structured as follows: Section II gives a detailed definition of graph embedding and the GGP. Section III constitutes a survey of literature relevant to graph genus bounding, graph minor theory, and the GGP itself. Section IV will then further discuss the relevance of graph minor theory and graph genus bounding to this project, and section V will describe the contributions this project will make based on graph minor theory and graph genus bounding. Finally, section VI will detail the project's proposed programming components.
 
 \section{Problem Statement}
 
@@ -53,10 +69,11 @@ Genus,Embedding,Surfaces
 \section{Conclusion}
 
 \begin{thebibliography}{1}
-\bibitem{define-embedding}
-\bibitem{kuratowski}
-\bibitem{hopcroft-tarjan}
-\bibitem{}
+\bibitem{filotti}
+\bibitem{thomassen}
+\bibitem{myrvold-kocay}
+\bibitem{mohar}
+\bibitem{xuong}
 \end{thebibliography}
 
 \end{document}

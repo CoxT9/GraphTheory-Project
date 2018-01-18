@@ -28,6 +28,6 @@ Relevant Project Literature:
 
 14. Mattman, Thomas W. "Forbidden minors: Finding the finite few." arXiv preprint arXiv:1608.04066 (2016).
 
-15. Mohar, Bojan. "Embedding graphs in an arbitrary surface in linear time." In Proceedings of the twenty-eighth annual ACM symposium on Theory of computing, pp. 392-397. ACM, 1996.
+15. Mohar, Bojan. "A linear time algorithm for embedding graphs in an arbitrary surface." SIAM Journal on Discrete Mathematics 12, no. 1 (1999): 6-26.
 
 16. Myrvold, Wendy, and William Kocay. "Errors in graph embedding algorithms." Journal of Computer and System Sciences 77, no. 2 (2011): 430-438.
