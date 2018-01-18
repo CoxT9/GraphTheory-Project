@@ -30,7 +30,7 @@ Email: coxt3@myumanitoba.ca}}
 
 \begin{abstract}
 
-An embedding of a graph G on some surface $\Sigma$ is a drawing of G on $\Sigma$ such that the edges of G only intersect at their endpoints, namely the vertices. The genus of a surface $\Sigma$ is the number of handles present on $\Sigma$, or the number of crosscaps in cases where $\Sigma$ is a nonorientable surface. The genus of a graph is the minimum number of handles (or crosscaps, in cases of nonorientability) that mube be added to $\Sigma$ in order for an embedding of G to be possible. The graph genus problem is given as follows: Given a graph G, find the (minimum) genus of G. In 1989, Thomassen proved that the graph genus problem is NP-Complete. However, in 1979 Filotti et al. gave a fixed paramater-tractable algorithm for the graph genus problem. The goal of this project is to investigate these papers and others to evaluate the current state of the graph genus problem. Approaches will then be developed to bound the genus of a graph G to a sufficiently small interval such that repeated execution of the algorithm in Filotti 1979 will be feasible. Therefore, the expected result of this project is a set of one or more heuristics that will reduce the search space for determining the genus of a graph.
+An embedding of a graph G on some surface $\Sigma$ is a drawing of G on $\Sigma$ such that the edges of G only intersect at their endpoints, namely the vertices. The genus of a surface $\Sigma$ is the number of handles present on $\Sigma$. The genus of a graph is the minimum number of handles that must be added to $\Sigma$ in order for an embedding of G to be possible. The graph genus problem is given as follows: Given a graph G and a natural number k, determine whether G has genus k or less. In 1989, Thomassen proved that the graph genus problem is NP-Complete. However, in 1996 Mohar et al. gave a linear-time algorithm to solve the graph genus problem for a fixed k. The goal of this project is to investigate these papers and others to evaluate the current state of the graph genus problem. Approaches will then be developed to bound the genus of a graph G to a sufficiently small interval such that repeated execution of Mohar 1996 will be feasible. Therefore, the expected result of this project is a set of one or more heuristics that will reduce the search space for determining the genus of a graph.
 
 \end{abstract}
 
@@ -39,10 +39,6 @@ Genus,Embedding,Surfaces
 \end{IEEEkeywords}
 
 \section{Introduction}
-
-Graph Embedding Problems lie at the intersection between Graph Theory and Topology. The problem in graph embedding of particular interest to this project is the graph genus problem, defined as follows: Given a Graph G = (V,E), find the minimum genus of G. 
-
-The remainder of this proposal is structured as follows: Section II gives a detailed definition of the graph genus problem. Section III constitutes a survey of literature relevant to the GGP. Next, section IV will discuss specific points of investigation. Section V will propose contributions related to those points, and section VI will detail the proposed programming components of this project.
 
 \section{Problem Statement}
 
@@ -69,3 +65,8 @@ The remainder of this proposal is structured as follows: Section II gives a deta
 
 
 % Graph Embedding Problems lie at the intersection between Graph Theory and Topology. The problem in graph embedding of particular interest to this project is the graph genus problem, defined as follows: Given a Graph G = (V,E), find the minimum genus of G. The genus of a surface $\Sigma$ is the number of handles on the surface in the case of orientable surfaces, or the number of crosscaps in the case of non-orientable surfaces. Therefore, the genus of a graph G is the minimum number of handles or crosscraps that must be present on the surface in order for an embedding of G to be possible. An embedding E of G on $\Sigma$ is a drawing of G on $\Sigma$ where the edges of G only intersect at their endpoints, namely the vertices of G. In 1989, Thomassen proved that the graph genus problem is NP-Complete. However, in 1979 Filotti et al. gave a fixed paramater-tractable algorithm for the graph genus problem. The goal of this project is to investigate these papers and others to evaluate the current state of the graph genus problem. Approaches will then be developed to bound the genus of a graph G to a sufficiently small interval such that repeated execution of the algorithm in Filotti 1979 will be feasible.
+
+
+% Graph Embedding Problems lie at the intersection between Graph Theory and Topology. The problem in graph embedding of particular interest to this project is the graph genus problem, defined as follows: Given a Graph G = (V,E), find the minimum genus of G. 
+
+% The remainder of this proposal is structured as follows: Section II gives a detailed definition of the graph genus problem. Section III constitutes a survey of literature relevant to the GGP. Next, section IV will discuss specific points of investigation. Section V will propose contributions related to those points, and section VI will detail the proposed programming components of this project.

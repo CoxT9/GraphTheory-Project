@@ -37,3 +37,31 @@ Project Proposal Draft Doc:
 - Forbidden Minor to bound graph genus. Goal: Bounded and Approximated Genus
 - Implement at least one existing alg, perhaps Fibotti 1979 or something newer. Goal: Grasp and Evaluate existing literature
 - Edmonds 1960 (Rotation System) on other surfaces. Goal: Study feasibility of (4)(c)
+
+> Graph genus is NP Complete
+> People tried to give fixed param algs
+> These algs were flawed
+> However, at least one is not
+> Goal of project: Heuristics to bound genus of G to feed into fixed param alg
+
+Intro:
+- What is it
+- The story (briefly)
+- Contribute heuristics: Faces, forbidden minors, theory
+
+Problem:
+- Formally define the problem, 2 cell embeddings, contractibility, j-curves, ..., then get into embedding, where it is, what the problem is.
+
+Related Work:
+- use the doc. tell the story. capture relevant work to heuristic development
+
+Investigation:
+- minors, faces, theory
+
+Contributions:
+- Heurustic to cut options for genus away. Run G through to see if it contains certain minors? See how many faces G has? other options
+
+Programming:
+- code to detect forbidden minors
+- code to find all the faces? what benefit does facial cycles give?
+- code to give an embedding?
