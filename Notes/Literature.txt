@@ -31,3 +31,11 @@ Relevant Project Literature:
 15. Mohar, Bojan. "A linear time algorithm for embedding graphs in an arbitrary surface." SIAM Journal on Discrete Mathematics 12, no. 1 (1999): 6-26.
 
 16. Myrvold, Wendy, and William Kocay. "Errors in graph embedding algorithms." Journal of Computer and System Sciences 77, no. 2 (2011): 430-438.
+
+17. Xuong, Nguyen Huy. "How to determine the maximum genus of a graph." Journal of Combinatorial Theory, Series B 26, no. 2 (1979): 217-225.
+
+18. Archdeacon, D., Kotrbčík, M., Nedela, R. and Škoviera, M., 2014. Maximum genus, connectivity, and Nebeský's Theorem. ARS MATHEMATICA CONTEMPORANEA, 9(1).
+
+19. Lovász, László. "Graph minor theory." Bulletin of the American Mathematical Society 43, no. 1 (2006): 75-86.
+
+20. Robertson, Neil, and Paul D. Seymour. "Graph minors. VIII. A Kuratowski theorem for general surfaces." Journal of Combinatorial Theory, series B 48, no. 2 (1990): 255-288.

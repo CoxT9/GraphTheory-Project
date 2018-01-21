@@ -1,14 +1,12 @@
 % Project Proposal LaTeX doc:
 
 \documentclass[12pt,conference]{IEEEtran}
+
 \usepackage{mathtools}
-
-\usepackage{algorithm}% http://ctan.org/pkg/algorithms
-\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
-
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \usepackage{graphicx}
 \usepackage{amsmath}
-
 \usepackage{stfloats}
 
 \graphicspath{ {images/} }
@@ -40,7 +38,7 @@ Genus,Embedding,Surfaces,Bounding
 
 \section{Introduction}
 
-Problems in graph embedding lie at the intersection between Graph Theory and Topology. The embedding problem of specific interest to this project is the Graph Genus Problem. The Graph Genus Problem (GGP) is as follows: Given a graph G and a natural number k, determine whether G has a genus of k or less. A graph has genus q if G can be embedded on some surface $\Sigma$ with genus q. The genus of $\Sigma$ is the number of handles that exist on $\Sigma$ in cases where $\Sigma$ is an orientable surfaces, or the number of crosscaps in cases where $\Sigma$ is unorientable. In cases of unorientability, the genus is also referred to as the \textit{demigenus}. The attribute of particular interest to the graph genus problem is the minimum genus of G. In fact, the genus of G normally denotes the minimum genus of G. 
+Problems in graph embedding lie at the intersection between Graph Theory and Topology. The graph embedding problem of specific interest to this project is the Graph Genus Problem. The Graph Genus Problem (GGP) is as follows: Given a graph G and a natural number k, determine whether G has a genus of k or less. A graph has genus q if G can be embedded on some surface $\Sigma$ with genus q. The genus of $\Sigma$ is the number of handles that exist on $\Sigma$ in cases where $\Sigma$ is an orientable surfaces, or the number of crosscaps in cases where $\Sigma$ is unorientable. In cases of unorientability, the genus is also referred to as the \textit{demigenus}. The attribute of particular interest to the graph genus problem is the minimum genus of G. In fact, the genus of G normally denotes the minimum genus of G. 
 
 In 1979, Filotti et al. gave a polynomial time algorithm for solving the GGP for a fixed value of k \cite{filotti}. Ten years later, Thomassen proved that the general GGP is NP-Complete \cite{thomassen}. In 2011, Myrvold et al. identified a fatal flaw in Filotti 1979, proving the algorithm's incorrectness \cite{myrvold-kocay}. However, Mohar was able to give a linear time algorithm for the fixed-k GGP in 1999 \cite{mohar}. Despite its difficult nature, Mohar 1999 has not been disproven. 
 
@@ -52,23 +50,32 @@ The goal of this project is to leverage Mohar 1999 for the purpose of determinin
 \item Determine methods for ruling-out or ruling-in the genus of a graph using Graph Minor Theory
 \end{enumerate}
 
-Part (1) will be accomplished by conducting a thorough literature survey, with initial points of investigation identified further in this work. Specific works in the GGP literature will provide insight into part (2). Part (2) will use tools including the Euler-Poincair\'e formula and theoretical findings from authors including Xuong 1979 \cite{xuong} to limit the search space for determining the genus of a graph. Finally, part (3) will use existing findings in Graph Minor Theory to further limit the search space for a graph's genus. This project will capitalize on findings similar to Kuratowski's theorem to further ascertain which surfaces a graph can or cannot be embedded on.
+Part (1) will be accomplished by conducting a thorough literature survey, with initial points of investigation identified further in this work. Specific works in the GGP literature will provide insight into part (2). Part (2) will use tools such as the Euler-Poincair\'e formula $v-e+f=2-2g$ and theoretical findings from authors including Xuong 1979 \cite{xuong} to limit the search space for determining the genus of a graph. Finally, part (3) will use existing findings in Graph Minor Theory to impose additional search space limits. This project will capitalize on findings similar to Kuratowski's theorem to further ascertain which surfaces a graph can or cannot be embedded on.
 
-The remainder of this proposal is structured as follows: Section II gives a detailed definition of graph embedding and the GGP. Section III constitutes a survey of literature relevant to graph genus bounding, graph minor theory, and the GGP itself. Section IV will then further discuss the relevance of graph minor theory and graph genus bounding to this project, and section V will describe the contributions this project will make based on graph minor theory and graph genus bounding. Finally, section VI will detail the project's proposed programming components.
+The remainder of this proposal is structured as follows: Section II gives a detailed definition of graph embedding and the GGP. Section III constitutes an overview of literature relevant to graph genus bounding, graph minor theory, and the GGP itself. Section IV will then further discuss the relevance of graph minor theory and theoretical graph genus bounding to this project, and section V will describe the contributions this project will make based on graph minor theory and theoretical graph genus bounding. Finally, section VI will detail the project's proposed programming components.
 
 \section{Problem Statement}
 
 In order to accurately describe the GGP, a series of nonelementary definitions must first be laid out. This proposal omits elementary graph theory definitions.
-Recall that the GGP is as follows: Given a graph G and a natural number k, determine whether g(G) $\leq$ k, where g(G) denotes the genus of G. g(G) is the genus of the minimally-genal surface G can be embedded on. A graph G is considered embeddable on some surface $\Sigma$ if there exists a drawing of G on $\Sigma$ such that the edges of G intersect only at their endpoints, namely the vertices of G. Embeddings of particular importance to this work and to the general GGP literature are \textit{2-cell} embeddings. An embedding of G on $\Sigma$, denoted $G^{\psi}$ is a 2-cell embedding if every face of $G^{\psi}$ is a 2-cell. That is, every face of $G^{\psi}$ is homeomporphic (topologically equivalent) to an open disc. For the remainder of this project, only 2-cell embeddings will be of interest. 
+Recall that the GGP is as follows: Given a graph G and a natural number k, determine whether g(G) $\leq$ k, where g(G) denotes the genus of G. g(G) is equal to the genus of the minimally-genal surface G can be embedded on. A graph G is considered embeddable on some surface $\Sigma$ if there exists a drawing of G on $\Sigma$ such that the edges of G intersect only at their endpoints, namely the vertices of G. 
 
-% next: surface genus
-% touch on orientability
-% define the problem itself as needed
-% determine citations
+Embeddings of particular importance to this work and to the general GGP literature are \textit{2-cell} embeddings. An embedding of G on $\Sigma$, denoted $G^{\psi}$ is a 2-cell embedding iff every face of $G^{\psi}$ is a 2-cell. That is, every face of $G^{\psi}$ is homeomporphic (topologically equivalent) to an open disc \cite{gao}. For example, an embedding of $K_{4}$ on the torus is not a 2-cell embedding, because one of the faces is homeomorphic to a perforated disk. For the remainder of this project, only 2-cell embeddings will be of interest. 
 
-% Informally, the genus of G g(G) is the minimum number of handles that must exist on some surface $\Sigma$ in order for G to be embeddable on $\Sigma$. Formally, g(G) is the maximum number of non-intersecting Jordan Curves 
+To determine the genus of a graph, it is first necessary to define the term genus itself. As mentioned, the genus of a graph G is determined by the genus of the surface G is to be embedded upon. Determining the genus of some surface $\Sigma$ first depends on whether $\Sigma$ is orientable. A surface $\Sigma$ is considered orientable if it has two sides. Informally, $\Sigma$ is orientable if a pointer can be continuously moved about the surface without causing its inversion. For example, the sphere is an orientable surface because no pointer may continuously travel about the sphere and manage to enter the sphere itself. In contrast, the M\"obius band is an \textit{un}orientable surface because a pointer may continuously travel about the M\"obius band and eventually arrive at the same location on the band, on the opposite side.
+  
+In cases where $\Sigma$ is an orientable surface, the genus of $\Sigma$ is the number of handles attached to $\Sigma$. For example, a handle attached to a surface of genus 0 (namely the Sphere) causes the surface to exhibit a donut shape (the Torus). Moreover, the genus of $\Sigma$ for some unorientable $\Sigma$ is equal to the number of crosscaps attached to $\Sigma$. Like in the case where $\Sigma$ is orientable, we begin with the sphere. A sphere with no crosscaps has an unorientable (and orientable) genus of 0. A crosscap is homeomorphic to a M\"obius band. Therefore, the genus of an unorientable surface is equivalent to the number of M\"obius bands sewn onto a sphere. The genus of a surface can also be defined formally using Jordan Curves. That is, the genus of $\Sigma$ is equal to the number of non-intersecting Jordan Curves that may be drawn on $\Sigma$ without causing a division into multiple pieces \cite{gao}. The Jordan Curve definition of genus results in the same values as the handle or crosscap variants. 
+
+The GGP may now be described specifically. The GGP aims to answer the following question: Given a graph G, determine the minimum number of handles that must be added to some surface $\Sigma$ in order for a 2-cell embedding of G to be possible on $\Sigma$. In cases where $\Sigma$ is unorientable, the GGP remains the same, except ``crosscaps'' replaces ``handles'' where used. The GGP is known to be NP-Complete \cite{thomassen} but is also known to be fixed-parameter tractable \cite{mohar}. Therefore, while it is unrealistic to develop an algorithm to solve the GGP, efforts may be made to reduce the number of possibilities for a graph's genus. If the bounds on a graph's genus are sufficiently narrow, feeding the reduced possibilities to a fixed-paramater algorithm may become a viable option for determining g(G).
 
 \section{Relevant Literature}
+
+The development of a comprehensive approach to bounding the genus of a graph as tightly as possible has recieved little attention in the graph theory literature. Xuong \cite{xuong} and Archdeacon et al. \cite{archdeacon} have been able to introduce upper bounds on the genus of a graph using the Betti Number of a graph B(G). In addition, authors including Garagin, Myrvold and Chambers \cite{gagarin-myrvold} and Thomas \cite{thomas} have completed works to further characterize the genus of a graph using Graph Minor Theory. Graph Minor Theory itself is the result of Robertson and Seymour's extension of Kuratowski's theorem to graphs on other surfaces. A thorough exposition of Graph Minor Theory can be found in Lov\'asz 2005 \cite{lovasz}. The aspect of Graph Minor Theory of particular interest is the 8th of Robertson and Seymour's papers, where the authors extend the Kuratowski theorem for general surfaces \cite{graph-minors-8} Despite the extensive work understaken in areas relevant to the GGP, little work has been accomplished that encompasses all known methods of graph genus bounding in pursuit of a robust answer to the GGP. 
+
+The GGP was first proven to be NP-Complete by Thomassen in \cite{thomassen} by that the GGP is polynomial time reducible to the maximal independent set problem. Despite Thomassen's proof, a number of fixed-k GGP algorithms have been developed, including those by Mohar \cite{mohar} and by Filotti et al. \cite{filotti} However, Myrvold and Kocay proved in 2011 that the algorithm presented by Filotti et al. was incorrect \cite{myrvold-kocay}. Despite its difficulty to implement, Mohar's fixed-k GGP algorithm was not disproven. 
+
+Graph embedding algorithms themselves have also been covered extensively in the literature. Graph embedding algorithms are a crucial aspect of approaching the GGP as an embedding of a graph G on a surface $\Sigma$ must be shown in order to prove such an embedding exists. Graph embedding algorithms also determine whether a graph is embeddable on specific surfaces. However, these algorithms do not apply to all surfaces in general. Kocay et al. extended Read's algorithm for drawing planar graphs to toroidal graphs in 2001 \cite{kocay}. In 2003, Gagarin gave a linear time algorithm to detect if a graph can be drawn in the projective plane \cite{gagarin}. 
+
+The primary literary baselines of this project are expected to be Mohar's linear-time fixed-k GGP algorithm, Xuong's upper bound of g(G) based on the Betti Number B(G), and Robertson and Seymour's development of Graph Minor theory to generalize Kuratowski's theorem to any surface. The combined results from these separate works is expected to result in a substantial set of heuristics that will reduce the possibilities for the genus of a given graph.
 
 \section{Areas of Investigation}
 
@@ -84,16 +91,14 @@ Recall that the GGP is as follows: Given a graph G and a natural number k, deter
 \bibitem{myrvold-kocay}
 \bibitem{mohar}
 \bibitem{xuong}
+\bibitem{gao}
+\bibitem{archdeacon}
+\bibitem{gagarin-myrvold}
+\bibitem{thomas}
+\bibitem{lovasz}
+\bibitem{graph-minors-8}
+\bibitem{kocay}
+\bibitem{gagarin}
 \end{thebibliography}
 
 \end{document}
-
-% Problems related to Graph Embedding lie at the intersection of Graph Theory and Topology. Graph Embedding problems ask questions concerning particular graphs and the particular surfaces they may be embedded on. An \textit{embedding} of a graph G on a surface $\Sigma$ is a drawing of G on $\Sigma$ where the edges of G may only intersect at the vertices of G \cite{define-embedding}. A specific example of a graph embedding problem is the problem of graph planarity. The graph planarity problem asks whether a given graph G may be embedded on the plane. While the graph planarity problem is solved by Kuratowski's theorem from \cite{kuratowski} in conjunction with the Hopcroft-Tarjan algorithm from \cite{hopcroft-tarjan}, it is not possible to generalize these solutions to other surfaces. For most surfaces, there is no complete set of minors nor is there a polynomial time to decide
-
-
-% Graph Embedding Problems lie at the intersection between Graph Theory and Topology. The problem in graph embedding of particular interest to this project is the graph genus problem, defined as follows: Given a Graph G = (V,E), find the minimum genus of G. The genus of a surface $\Sigma$ is the number of handles on the surface in the case of orientable surfaces, or the number of crosscaps in the case of non-orientable surfaces. Therefore, the genus of a graph G is the minimum number of handles or crosscraps that must be present on the surface in order for an embedding of G to be possible. An embedding E of G on $\Sigma$ is a drawing of G on $\Sigma$ where the edges of G only intersect at their endpoints, namely the vertices of G. In 1989, Thomassen proved that the graph genus problem is NP-Complete. However, in 1979 Filotti et al. gave a fixed paramater-tractable algorithm for the graph genus problem. The goal of this project is to investigate these papers and others to evaluate the current state of the graph genus problem. Approaches will then be developed to bound the genus of a graph G to a sufficiently small interval such that repeated execution of the algorithm in Filotti 1979 will be feasible.
-
-
-% Graph Embedding Problems lie at the intersection between Graph Theory and Topology. The problem in graph embedding of particular interest to this project is the graph genus problem, defined as follows: Given a Graph G = (V,E), find the minimum genus of G. 
-
-% The remainder of this proposal is structured as follows: Section II gives a detailed definition of the graph genus problem. Section III constitutes a survey of literature relevant to the GGP. Next, section IV will discuss specific points of investigation. Section V will propose contributions related to those points, and section VI will detail the proposed programming components of this project.
