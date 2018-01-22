@@ -51,3 +51,5 @@ Relevant Project Literature:
 25. Kurauskas, Valentas. "On the genus of the complete tripartite graph Kn, n, 1." Discrete Mathematics 340, no. 3 (2017): 508-515.
 
 26. Robertson, Neil, and Paul D. Seymour. "Graph minors. XIII. The disjoint paths problem." Journal of combinatorial theory, Series B 63, no. 1 (1995): 65-110.
+
+27. Gagarin, Andrei, and William Kocay. "Embedding graphs containing K5-subdivisions." Ars Comb. 64 (2002): 33.
