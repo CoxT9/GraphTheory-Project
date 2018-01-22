@@ -65,3 +65,9 @@ Programming:
 - code to detect forbidden minors
 - code to find all the faces? what benefit does facial cycles give?
 - code to give an embedding?
+
+
+Some graph databases:
+
+http://yaroslavvb.com/upload/graphs2.txt
+http://doc.sagemath.org/html/en/reference/graphs/sage/graphs/graph_generators.html

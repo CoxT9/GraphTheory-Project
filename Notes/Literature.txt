@@ -39,3 +39,15 @@ Relevant Project Literature:
 19. Lovász, László. "Graph minor theory." Bulletin of the American Mathematical Society 43, no. 1 (2006): 75-86.
 
 20. Robertson, Neil, and Paul D. Seymour. "Graph minors. VIII. A Kuratowski theorem for general surfaces." Journal of Combinatorial Theory, series B 48, no. 2 (1990): 255-288.
+
+21. L. Nebesk´y, A new characterization of the maximum genus of a graph, Czechoslovak Math. J. 31(1981), 604–613.
+
+22. Mohar, Bojan, and Carsten Thomassen. Graphs on surfaces. Vol. 2. Baltimore: Johns Hopkins University Press, 2001.
+
+23. Kawarabayashi, Ken-ichi, Yusuke Kobayashi, and Bruce Reed. "The disjoint paths problem in quadratic time." Journal of Combinatorial Theory, Series B 102, no. 2 (2012): 424-435.
+
+24. Bouchet, André. "Orientable and nonorientable genus of the complete bipartite graph." Journal of Combinatorial Theory, Series B 24, no. 1 (1978): 24-33.
+
+25. Kurauskas, Valentas. "On the genus of the complete tripartite graph Kn, n, 1." Discrete Mathematics 340, no. 3 (2017): 508-515.
+
+26. Robertson, Neil, and Paul D. Seymour. "Graph minors. XIII. The disjoint paths problem." Journal of combinatorial theory, Series B 63, no. 1 (1995): 65-110.
