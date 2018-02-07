@@ -1,0 +1,84 @@
+% Project Proposal LaTeX doc:
+
+\documentclass[12pt,conference]{IEEEtran}
+
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{stfloats}
+
+\graphicspath{ {images/} }
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+\raggedbottom
+
+\title{Graph Minor Algorithm Implementation: A Project Proposal}
+
+\author{\IEEEauthorblockN{Taylor Cox}
+\IEEEauthorblockA{COMP 4060: Graph Theory\\
+University of Manitoba\\
+Email: coxt3@myumanitoba.ca}}
+
+\maketitle
+
+\begin{abstract}
+
+Graph Minor Theory is a recent development in Graph Theory spearheaded by Robertson and Seymour over the past thirty-five or more years. Graph Minor Theory states that any graph property closed under minors may be characterized by a finite set of restricted minors. However, determining whether a graph of interest contains such a restricted minor is a non-trivial task. To solve this problem, an algorithm must be developed to determine whether a graph G has a minor H. This is known as the Graph Minor Problem (GMP). While the GMP is NP-Complete for arbitrary H, polynomial time solutions exist for fixed H versions of the GMP. The goal of this project is to evaluate the current state of the art with respect to the GMP. The fastest known algorithms for the GMP will then be implemented and critically examined for their correctness and efficiency.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Graph Minor,Algorithm,Efficiency
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Problems in Graph Minor Theory give valuable insight into the topological aspects of graph theory. In particular, an application of the key Graph Minor Theory result is the fact that all families of graphs embeddable on some surface $\Sigma$ may be characterized by a finite set of \textit{restricted minors} \cite{robertson-seymour-final}. A fundamental example of this result is Wagner's theorem: ``A Finite Graph G is planer iff G contains no minor $K_{5}$ or $K_{3,3}$''. Graph Minor Theory may be interpreted as a (successful) attempt to generalize Wagner's Theorem to some arbitrary surface $\Sigma$. 
+
+Despite the significant value of Robertson and Seymour's work, there remain many intractable subproblems within Graph Minor Theory. For example, while the fact that all minor-closed properties are characterized by forbidden minors is valuable, it is an exceptionally challenging task to determine the set of forbidden minors for some property P. In the case of graph embedding, there exist two forbidden minors for the plane, as few as twelve for the projective plane \cite{proj-plane-minors}, and an unknown amount for the Torus \cite{torus-minors}. In addition, it is also a difficult task to determine whether a graph G contains some minor M which is restricted for some property P. In order to do this, an efficient algorithm must be developed to decide the following problem: ``Given two graphs G and H, decide if G has a minor H''. 
+
+This project will provide an exhaustive examination of the graph minor question (or the \textit{Graph Minor Problem (GMP)}). First, the state of the art concerning the GMP will be surveyed for current developments and research directions. Next, a series of algorithms for solving the GMP will be examined, the most efficient of which will be implemented and studied with respect to its correctness and efficiency. The current state of Graph Minor algorithms will be discussed in the following section. After specifically describing the Graph Minor problem, the contributions of this project will be described.
+
+\section{Problem Statement}
+
+Before examining the GMP in full detail, some non-elementary definitions must be laid out. This proposal omits elementary graph theory definitions. Recall the GGP as follows: ``Given two graphs G and H, decide if G has a minor H''. A graph G has a minor H iff G can be transformed to H by a series of vertex or edge-deletions, followed by a series of edge-contractions. The proof that the edge-contractions may always follow vertex/edge-deletions is given by Kocay and Kreher \cite{gao}. 
+
+Removal of a vertex or edge from G is a trivial operation. Edge \textit{contraction} is the operation of identifying two adjacent vertices \textit{u, v} together into a new vertex \textit{u$\cdotp$v}, where edges of \textit{u} and \textit{v} jointly compose the edges of \textit{u$\cdotp$v}. By definition, the graphs that may be produced from G by vertex/edge-deletions followed by edge-contractions are the minors of G. 
+
+The problem to be undertaken in this project is the determination of whether an input graph G contains some fixed graph H as a minor. The GMP is NP-Complete for an arbitrary H. \textit{Proof:} Let H be a cycle graph with as many vertices of G. To determine whether H is a minor of G is equivalent to determining whether G has a Hamiltonian cycle, which is NP-Complete. 
+
+Despite its general intractability, multiple polynomial time algorithms exist for solving the GMP with a fixed H. These algorithms generally rely on translating the GMP to the k-Disjoint Paths Problem. The k-Disjoint Paths Problem is as follows: ``Let G be a graph with k s,t pairs of vertices $(s_{1}, t_{1}), (s_{2}, t_{2}), ..., (s_{k}, t_{k})$. Decide if there exist mutually vertex disjoint paths $P_{1}, P_{2}, ..., P_{k}$ such that $P_{i}$ joins $s_{i}$ and $t_{i}$''. Similar to the GMP, the k-Disjoint Paths Problem is NP-Complete when k is an input parameter of the problem, but the fixed-k Disjoint Paths Problem has been solved in Polynomial time. The first of such solutions was by Robertson and Seymour \cite{robertson-seymour-13} \cite{robertson-seymour-13-proof} themselves as part of the Graph Minor Theory project. The algorithm initially proposed runs in O($n^{3}$) time, where n is the number of vertices in G. However, the algorithm also depends on very large constants (which are not captured in the big-Oh analysis) \cite{robertson-seymour-13}. Improvements on this result have since been released in the literature. Kawarabayashi gave an O($n^{2}$) algorithm for the Disjoint Paths Problem in 2009 \cite{kawarabayashi-n2}, followed by an O(nm) algorithm in 2010, where m is the number of edges in G \cite{kawarabayashi-nm}. 
+
+An instance of the Graph Minor problem can be trivially converted to an instance of the k-Disjoint Paths problem. This is accomplished by treating vertices in H (the candidate minor of G) as disjoint subgraphs in G, and treating edges in H as disjoint edges \cite{sheppardson-thesis}. Therefore, polynomial time algorithms for the k-Disjoint Paths Problem also serve as polynomial time algorithms for the GMP. 
+
+\section{Proposed Contributions}
+
+This project is composed of a primary and a secondary contribution. The secondary contribution to be undertaken is a literature survey of current GMP research and applications. The expected end-result of the secondary contribution is a literature review that compiles recent seminal results in graph minor theory including GMP algorithms themselves (as briefly described in this proposal) as well as the graph-theoretic and complexity-theoretic contributions of advances in Graph Minor Theory \cite{parameterized-complexity}.
+
+The primary contribution of this project is to be an implementation of at least one of the existing polynomial time GMP algorithms. The O(nm) algorithm described and proved correct in \cite{kawarabayashi-nm} selected as the primary algorithm of choice. Despite its proof of correctness, no implementation of this algorithm has yet been given. Therefore, this project will undertake its implementation. At least one general GMP implementation is presently available, despite being very slow \cite{sage-graph-minor}. The goal of this contribution will be to compare the newly minted GMP implementation against the known ``slow'' implementation for a comparison of correctness, theoretical efficiency and practical speed.
+
+\section{Conclusion}
+
+The end result of this project is expected to be (1) a thorough literature survey of the current GMP research area and (2) an implementation of an efficient algorithm for determining if a graph G contains a fixed minor H. This project will use the proofs of correctness for such algorithms to implement and evaluate at least one, namely the O(nm) Kawarabayashi implementation.
+
+The existence of a polynomial time algorithm for determining if a graph G has a certain minor is a crucial result of Graph Minor Theory. The other major result of Graph Minor Theory is the fact that any property closed under graph minors may be characterized by a finite set of restricted minors. The two combined results of Graph Minor Theory imply that the membership of some graph G in some family of graphs closed under minors can be tested in polynomial time. While the set of restricted minors is not yet known for many graph properties, practical implementations of graph minor detection algorithms will contribute to the advancement of graph minor theory beyond the purely analytical domain.
+
+\begin{thebibliography}{1}
+\bibitem{robertson-seymour-final} Neil Robertson and P. D. Seymour. 2004. Graph Minors. XX. Wagner's conjecture. J. Comb. Theory Ser. B 92, 2 (November 2004), 325-357. DOI=http://dx.doi.org/10.1016/j.jctb.2004.08.001 
+\bibitem{proj-plane-minors} Mohar, Bojan, and Carsten Thomassen. Graphs on surfaces. Vol. 2. Baltimore: Johns Hopkins University Press, 2001.
+\bibitem{torus-minors} Chambers, J., “Hunting for Torus Obstructions,” M.Sc. thesis, Dept. of Comput. Sci., University of Victoria, British Columbia, 2002.
+\bibitem{gao} Kocay, William, and Donald L. Kreher. Graphs, algorithms, and optimization. CRC Press, 2016.
+\bibitem{robertson-seymour-13} Robertson, Neil, and Paul D. Seymour. Graph minors. XIII. The disjoint paths problem. Journal of combinatorial theory, Series B 63, no. 1 (1995): 65-110.
+\bibitem{robertson-seymour-13-proof} Robertson, Neil, and Paul Seymour. Graph Minors. XXII. Irrelevant vertices in linkage problems. Journal of Combinatorial Theory, Series B 102, no. 2 (2012): 530-563.
+\bibitem{kawarabayashi-n2} Kawarabayashi, K.I., Kobayashi, Y. and Reed, B., 2012. The disjoint paths problem in quadratic time. Journal of Combinatorial Theory, Series B, 102(2), pp.424-435.
+\bibitem{kawarabayashi-nm} Kawarabayashi, K.I. and Wollan, P., 2010, June. A shorter proof of the graph minor algorithm: the unique linkage theorem. In Proceedings of the forty-second ACM symposium on Theory of computing (pp. 687-694). ACM.
+\bibitem{sheppardson-thesis} Sheppardson, L., 2003. Disjoint Paths in Planar Graphs (Doctoral dissertation, School of Mathematics, Georgia Institute of Technology).
+\bibitem{parameterized-complexity} Cygan, M., Fomin, F.V., Kowalik, Ł., Lokshtanov, D., Marx, D., Pilipczuk, M., Pilipczuk, M. and Saurabh, S., 2015. Parameterized algorithms (Vol. 4, No. 8). pp. 140-150. Springer.
+\bibitem{sage-graph-minor} Stein, W. and Joyner, D., 2005. Sage: System for algebra and geometry experimentation. ACM SIGSAM Bulletin, 39(2), pp.61-64.
+\end{thebibliography}
+
+\end{document}
