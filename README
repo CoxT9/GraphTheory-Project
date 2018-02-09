@@ -1,12 +1,14 @@
 This repository captures the project work accomplished during COMP 4060/7750 Winter 2018: Graph Theory. 
 
-This project is focused on problems relating to Graph Embedding on different surfaces of interest. In particular, the goal of this project is to ask questions such as the following:
+This project is focused on a problem prerequisite to graph embedding and other graph-theoretic problems concerning minor-closed properties. The problem of interest is the graph minor problem:
 
-Given a graph G and a surface S of genus Q, does an embedding (with no crossings) exist of G on S?
-Does such an embedding need to be explicity given in order to conclude that such an embedding exists?
-Given a graph G, can the genus Q of G be bounded minimally and/or maximally?
-What interesting properties do Orientable and Non-orientable surfaces share (or not) with respect to graph embedding?
-What other aspects of Graph Theory (Forbidden Minors, Facial Cycles, among others) can be used to break new ground in this problem?
-And more...
+"Given a graph G and a fixed minor H, does G have a minor H?"
+
+The first algorithm to answer to this question was given by Robertson and Seymour in 1995 with an O(n3) algorithm which has impractical dependence on large constants. Kawarabayashi then proposed a O(n2) algorithm in 2009, followed by a O(nm) algorithm in 2010 (where m is the number of edges). Kawarabayashi's algorithms are thought to be much more efficient.
+
+This project will include the following:
+1. Implementation of Kawarabayashi's O(nm) algorithm
+2. Practical and Theoretical comparison against the only other known implementation (the one on Sage)
+3. Discussion of impact of the graph minor algorithm (particularly, contributions to complexity theory)
 
 Project author: Taylor Cox (Professor: Dr. William Kocay)
