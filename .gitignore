@@ -1,4 +1,5 @@
 */*.aux
 */*.log
 */*.gz
-*/*.o
+Code/object/*
+Code/has_graph_minor
