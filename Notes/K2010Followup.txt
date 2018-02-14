@@ -1,0 +1,30 @@
+Followup Items to Kawarabayashi 2010:
+
+Find clear explanations of:
+
+- k disjoint paths problem
+- clique minors
+- tree width
+- Unique Linkage Theorem
+- Large vs Huge clique minors
+- Edge vs Vertex disjoint path problem
+- plane vs planar graphs
+- graph walls
+- what a bramble is
+- what a ladder is
+
+Read:
+
+Kawarabayashi, K.I. and Kobayashi, Y., 2015. The edge-disjoint paths problem in Eulerian graphs and 4-edge-connected graphs. Combinatorica, 35(4), pp.477-495.
+
+Look at:
+
+Kawarabayashi, K.I., Kobayashi, Y. and Reed, B., 2012. The disjoint paths problem in quadratic time. Journal of Combinatorial Theory, Series B, 102(2), pp.424-435.
+
+Bodlaender, H.L., 1996. A linear-time algorithm for finding tree-decompositions of small treewidth. SIAM Journal on computing, 25(6), pp.1305-1317.
+
+Bodlaender, H.L., Fomin, F.V., Lokshtanov, D., Penninkx, E., Saurabh, S. and Thilikos, D.M., 2016. (Meta) kernelization. Journal of the ACM (JACM), 63(5), p.44.
+
+Find:
+
+Graph database
