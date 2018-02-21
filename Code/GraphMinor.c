@@ -47,6 +47,29 @@ int main(int argc, char** argv) {
     return EXIT_SUCCESS;
 }
 
+int k_disjoint_paths(graph_t **graph, graph_t **minor) {
+    // Launch k dpp between G and H.
+    // Need to find the 'general dynamic programming argument'
+    // Also need a basic implemenation of k dpp, and a clear analogy between the two problems
+    return 0;
+}
+
 int graph_has_minor(graph_t **graph, graph_t **minor) {
-  return 0; // First thing: Simple graph minor check alg. Goes here
+    bool result = 0;
+
+    int g_vertices = (*graph)->num_vertices;
+    int h_vertices = (*minor)->num_vertices;
+    int g_edges = (*graph)->num_edges;
+    int h_edges = (*minor)->num_edges;
+
+    char *result_str = malloc(sizeof(char*));
+
+    if(g_edges >= h_edges && g_vertices >= h_vertices) {
+        result = k_disjoint_paths(graph, minor);
+    } else {
+        out("G failed preprocessing checks against H\n");
+        sprintf(result_str, "%d vertices (G) against %d vertices (H). %d edges (G) against %d edges (H).\n", g_vertices, h_vertices, g_edges, h_edges);
+        out(result_str);
+    }
+    return result; // First thing: Simple graph minor check alg. Goes here
 }

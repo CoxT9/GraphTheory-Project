@@ -11,7 +11,8 @@
 
 typedef struct graph {
     int** data;
-    int n;
+    int num_vertices;
+    int num_edges;
 } graph_t;
 
 typedef enum { FALSE, TRUE } bool;

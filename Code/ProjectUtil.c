@@ -22,7 +22,7 @@ void output_graph(graph_t **graph) {
     int i;
     int j;
     int value;
-    int n = (*graph)->n;
+    int n = (*graph)->num_vertices;
     for(i = 0; i < n; i++) {
         printf("Vertex %d: ", i);
         for(j = 0; j < n; j++) {
@@ -47,6 +47,7 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
     // 0 alone is eof
 
     int num_vertices = 0;
+    int num_edges = 0;
     int value;
     int curr_vertex;
 
@@ -92,8 +93,11 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                             if(value < 0) {
                                 curr_vertex = (value*-1)-1;
                                 line++;
-                            } else {
+                            } else if(value > 0) {
+                                printf("%d %d %d\n", curr_vertex, value, num_vertices);
                                 data[curr_vertex][value-1] = 1;
+                                data[value-1][curr_vertex] = 1;
+                                num_edges++;
                             }
                             tok = strtok(NULL, " ");
                         }
@@ -103,7 +107,8 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
         }
     }
     (*graph)->data = data;
-    (*graph)->n = num_vertices;
+    (*graph)->num_vertices = num_vertices;
+    (*graph)->num_edges = num_edges;
 }
 
 int **init_graph(int num_vertices) {
