@@ -47,10 +47,39 @@ int main(int argc, char** argv) {
     return EXIT_SUCCESS;
 }
 
-int k_disjoint_paths(graph_t **graph, graph_t **minor) {
+int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edges, int h_vertices, int h_edges) {
     // Launch k dpp between G and H.
     // Need to find the 'general dynamic programming argument'
-    // Also need a basic implemenation of k dpp, and a clear analogy between the two problems
+    // Also need a basic implemenation of k dpp
+
+    // first pass: for each u in H, is there an unvisited v in G with same degree as u?
+    bool paths_exist = 1;
+    int u;
+    int v;
+
+    int visited[g_vertices];
+    int i;
+    for(i = 0; i < g_vertices; i++) {
+        visited[i] = 0;
+    }
+
+    for(u = 0; u < h_vertices ** paths_exist; u++) {
+        // for each u in H, does the exist an unvisited v in G with same degree as u?
+        // this may not work, but a good starting point
+    }
+    // first, do the simple "unvisited degree match"
+
+    // pick a node of H
+    // BFS out of the node, collect all the outgoing paths
+    // does there exist a node in G with that number of outgoing paths?
+    // shuffling: may have to backtrack
+    // then have to connect it all
+
+    // plan:
+    // 1: outgoing path match. is there an unvisited vertex v with i outgoing paths?
+    // 2: backtrack: if no unvisited vertex v exists, pop the stack and find a different option somewhere and try that (this may be where DP comes into play)
+    // 3: path joining. Apply the constraint that some src's are other's dests. 
+    // Then we'll do advanced disjoint paths, tree width for example
     return 0;
 }
 
@@ -65,7 +94,7 @@ int graph_has_minor(graph_t **graph, graph_t **minor) {
     char *result_str = malloc(sizeof(char*));
 
     if(g_edges >= h_edges && g_vertices >= h_vertices) {
-        result = k_disjoint_paths(graph, minor);
+        result = k_disjoint_paths(graph, minor, g_vertices, g_edges, h_vertices, h_edges);
     } else {
         out("G failed preprocessing checks against H\n");
         sprintf(result_str, "%d vertices (G) against %d vertices (H). %d edges (G) against %d edges (H).\n", g_vertices, h_vertices, g_edges, h_edges);

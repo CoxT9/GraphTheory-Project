@@ -9,7 +9,7 @@
 #define GRAPH_INDEX 1
 #define MINOR_INDEX 2
 
-int k_disjoint_paths(graph_t **graph, graph_t **minor);
+int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edges, int h_vertices, int h_edges);
 int graph_has_minor(graph_t **graph, graph_t **minor);
 
 #endif
