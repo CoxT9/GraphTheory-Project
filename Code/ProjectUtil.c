@@ -94,7 +94,6 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                                 curr_vertex = (value*-1)-1;
                                 line++;
                             } else if(value > 0) {
-                                printf("%d %d %d\n", curr_vertex, value, num_vertices);
                                 data[curr_vertex][value-1] = 1;
                                 data[value-1][curr_vertex] = 1;
                                 num_edges++;
@@ -106,20 +105,39 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
             }
         }
     }
-    (*graph)->data = data;
+    (*graph)->data = init_graph(num_vertices);
+    memcpy( (*graph)->data, data, num_vertices*num_vertices*sizeof(int));
     (*graph)->num_vertices = num_vertices;
     (*graph)->num_edges = num_edges;
 }
 
 int **init_graph(int num_vertices) {
     int i;
+    int j;
     int **data;
 
     data = (int **)malloc(num_vertices * sizeof(int*));
     if(data) {
         for(i = 0; i < num_vertices; i++) {
             data[i] = (int *)malloc(sizeof(int) * num_vertices);
+            for(j = 0; j < num_vertices; j++) {
+                data[i][j] = 0;
+            }
         }
     }
     return data;
+}
+
+// May want vertex degrees to be stored apriori
+int get_degree(graph_t **graph, int v, int g_vertices) {
+    int degree = 0;
+    int i;
+    if(v < g_vertices) {
+        for(i = 0; i < g_vertices; i++) {
+            if((*graph)->data[v][i]) {
+                degree++;
+            }
+        }
+    }
+    return degree;
 }

@@ -24,5 +24,6 @@ void out(char *data);
 void output_graph(graph_t **graph);
 void generate_graph(graph_t **graph, char *path_to_graph);
 int **init_graph(int num_vertices);
+int get_degree(graph_t **graph, int v, int g_vertices);
 
 #endif

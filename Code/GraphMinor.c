@@ -54,6 +54,7 @@ int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edg
 
     // first pass: for each u in H, is there an unvisited v in G with same degree as u?
     bool paths_exist = 1;
+    bool found;
     int u;
     int v;
 
@@ -63,9 +64,23 @@ int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edg
         visited[i] = 0;
     }
 
-    for(u = 0; u < h_vertices ** paths_exist; u++) {
-        // for each u in H, does the exist an unvisited v in G with same degree as u?
+    for(u = 0; u < h_vertices && paths_exist; u++) {
+        // for each u in H, does there exist an unvisited v in G with same degree as u?
         // this may not work, but a good starting point
+        found = 0;
+        v = 0;
+        while(v < g_vertices && !found) {
+            if(!visited[v]) {
+                visited[v] = 1;
+                if(get_degree(graph, v, g_vertices) >= get_degree(minor, u, h_vertices)) { // get degree of v
+                    found = 1;
+                }
+            }
+            v++;
+        }
+        if(!found) {
+            paths_exist = 0;
+        }
     }
     // first, do the simple "unvisited degree match"
 
@@ -80,7 +95,7 @@ int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edg
     // 2: backtrack: if no unvisited vertex v exists, pop the stack and find a different option somewhere and try that (this may be where DP comes into play)
     // 3: path joining. Apply the constraint that some src's are other's dests. 
     // Then we'll do advanced disjoint paths, tree width for example
-    return 0;
+    return paths_exist;
 }
 
 int graph_has_minor(graph_t **graph, graph_t **minor) {
