@@ -95,6 +95,8 @@ int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edg
     // 2: backtrack: if no unvisited vertex v exists, pop the stack and find a different option somewhere and try that (this may be where DP comes into play)
     // 3: path joining. Apply the constraint that some src's are other's dests. 
     // Then we'll do advanced disjoint paths, tree width for example
+
+    // next: need transitive unvisited paths. Flow networks may come into play
     return paths_exist;
 }
 
