@@ -97,6 +97,10 @@ int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edg
     // Then we'll do advanced disjoint paths, tree width for example
 
     // next: need transitive unvisited paths. Flow networks may come into play
+    // need multi unvisited paths. flow networks for sure
+    // how to gadgetize a graph programatically?
+
+    // gadgetize. outgoing paths. destinations have paths between them too
     return paths_exist;
 }
 
