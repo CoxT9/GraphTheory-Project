@@ -44,22 +44,35 @@ int main(int argc, char** argv) {
     return EXIT_SUCCESS;
 }
 
-int get_tree_decomposition(graph_t **graph, int g_vertices, int g_edges, int k) {
-    // this will also return a tree decomposition struct if the treewidth is bounded
-    // use the linear time alg from Bodlaender
-    // if tw is bounded, return 1 and fill struct
-    // else 0 and no struct
-    return 0;
+void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
+    // given G = (V,E) and k, determine if G has a treewidth bounded by k
+    // if yes, also give the composition
+    // This comes from Bodlaender 1992. In this original paper, he says to use 'any finite algorithm' for suff. small graphs
+    // However, it's not clear why we would do that. The other TW algs are exponential. Stick with the linear one unless there is a problem with small graphs.
+    // will need to impl the alg and decide what a tree decomp 'looks' like.
+    (*decomposition)->treewidth_bounded = 0;
+    out("Determining the tree decomposition of G...");
+
+    if( g_edges <= k * g_vertices - (double)(k*(k+1))/2 ) {
+        out("The treewidth is possibly bounded...");
+    }
 }
 
 int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edges, int h_vertices, int h_edges) {
-    int treewidth_bound = h_edges;
-    int treewidth_bounded = get_tree_decomposition(graph, g_vertices, g_edges, treewidth_bound);
+    int treewidth_k;
+    tree_decomp_t *decomposition;
+    int tw_bounded;
+
+    treewidth_k = h_edges;
+    decomposition = malloc(sizeof(tree_decomp_t*));
+
+    get_tree_decomposition(&decomposition, graph, g_vertices, g_edges, treewidth_k);
+    tw_bounded = decomposition->treewidth_bounded;
 
 
     // the first thing Kawarabayashi et al did was see if G has a bounded tree width
     // in this case, G is bounded by H. Ie: k = E(H) (will need to confirm this)
-    return treewidth_bound-treewidth_bound;
+    return tw_bounded;
 }
 
 int graph_has_minor(graph_t **graph, graph_t **minor) {

@@ -10,11 +10,15 @@
 #define INPUT_LENGTH 2048
 #define OUT_BUFFER_LENGTH 4096
 
-typedef struct graph {
+typedef struct {
     int** data;
     int num_vertices;
     int num_edges;
 } graph_t;
+
+typedef struct {
+  int treewidth_bounded;
+} tree_decomp_t;
 
 typedef enum { FALSE, TRUE } bool;
 

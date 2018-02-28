@@ -10,7 +10,7 @@
 #define MINOR_INDEX 2
 
 int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edges, int h_vertices, int h_edges);
-int get_tree_decomposition(graph_t **graph, int g_vertices, int g_edges, int k);
+void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k);
 int graph_has_minor(graph_t **graph, graph_t **minor);
 
 #endif
