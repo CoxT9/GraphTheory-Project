@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 
 #define INPUT_LENGTH 2048
 #define OUT_BUFFER_LENGTH 4096
