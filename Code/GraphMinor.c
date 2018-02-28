@@ -16,12 +16,10 @@ int main(int argc, char** argv) {
     graph_t *graph = malloc(sizeof(graph_t*));
     graph_t *minor = malloc(sizeof(graph_t*));
     int has_minor = 0; 
-    int args_str_len = strlen(BAD_ARGS_STR) + 100;
 
     if(argc != REQUIRED_ARGS + 1) {
-        char *bad_args = malloc(sizeof(char*)*args_str_len);
-        sprintf(bad_args, BAD_ARGS_STR, argv[0]);
-        out(bad_args);
+        sprintf(out_buffer, BAD_ARGS_STR, argv[0]);
+        out(out_buffer);
         return EXIT_SUCCESS;
     }
 
@@ -39,69 +37,29 @@ int main(int argc, char** argv) {
     out("Launching Minor Detection Algorithm...");
     has_minor = graph_has_minor(&graph, &minor);
 
-    char *result_str = malloc(sizeof(char*));
-    sprintf(result_str, "G has minor H: %d", has_minor);
-    out(result_str);
+    sprintf(out_buffer, "G has minor H: %d", has_minor);
+    out(out_buffer);
 
     // ...
     return EXIT_SUCCESS;
 }
 
+int get_tree_decomposition(graph_t **graph, int g_vertices, int g_edges, int k) {
+    // this will also return a tree decomposition struct if the treewidth is bounded
+    // use the linear time alg from Bodlaender
+    // if tw is bounded, return 1 and fill struct
+    // else 0 and no struct
+    return 0;
+}
+
 int k_disjoint_paths(graph_t **graph, graph_t **minor, int g_vertices, int g_edges, int h_vertices, int h_edges) {
-    // Launch k dpp between G and H.
-    // Need to find the 'general dynamic programming argument'
-    // Also need a basic implemenation of k dpp
+    int treewidth_bound = h_edges;
+    int treewidth_bounded = get_tree_decomposition(graph, g_vertices, g_edges, treewidth_bound);
 
-    // first pass: for each u in H, is there an unvisited v in G with same degree as u?
-    bool paths_exist = 1;
-    bool found;
-    int u;
-    int v;
 
-    int visited[g_vertices];
-    int i;
-    for(i = 0; i < g_vertices; i++) {
-        visited[i] = 0;
-    }
-
-    for(u = 0; u < h_vertices && paths_exist; u++) {
-        // for each u in H, does there exist an unvisited v in G with same degree as u?
-        // this may not work, but a good starting point
-        found = 0;
-        v = 0;
-        while(v < g_vertices && !found) {
-            if(!visited[v]) {
-                visited[v] = 1;
-                if(get_degree(graph, v, g_vertices) >= get_degree(minor, u, h_vertices)) { // get degree of v
-                    found = 1;
-                }
-            }
-            v++;
-        }
-        if(!found) {
-            paths_exist = 0;
-        }
-    }
-    // first, do the simple "unvisited degree match"
-
-    // pick a node of H
-    // BFS out of the node, collect all the outgoing paths
-    // does there exist a node in G with that number of outgoing paths?
-    // shuffling: may have to backtrack
-    // then have to connect it all
-
-    // plan:
-    // 1: outgoing path match. is there an unvisited vertex v with i outgoing paths?
-    // 2: backtrack: if no unvisited vertex v exists, pop the stack and find a different option somewhere and try that (this may be where DP comes into play)
-    // 3: path joining. Apply the constraint that some src's are other's dests. 
-    // Then we'll do advanced disjoint paths, tree width for example
-
-    // next: need transitive unvisited paths. Flow networks may come into play
-    // need multi unvisited paths. flow networks for sure
-    // how to gadgetize a graph programatically?
-
-    // gadgetize. outgoing paths. destinations have paths between them too
-    return paths_exist;
+    // the first thing Kawarabayashi et al did was see if G has a bounded tree width
+    // in this case, G is bounded by H. Ie: k = E(H) (will need to confirm this)
+    return treewidth_bound-treewidth_bound;
 }
 
 int graph_has_minor(graph_t **graph, graph_t **minor) {
@@ -112,14 +70,12 @@ int graph_has_minor(graph_t **graph, graph_t **minor) {
     int g_edges = (*graph)->num_edges;
     int h_edges = (*minor)->num_edges;
 
-    char *result_str = malloc(sizeof(char*));
-
     if(g_edges >= h_edges && g_vertices >= h_vertices) {
         result = k_disjoint_paths(graph, minor, g_vertices, g_edges, h_vertices, h_edges);
     } else {
-        out("G failed preprocessing checks against H\n");
-        sprintf(result_str, "%d vertices (G) against %d vertices (H). %d edges (G) against %d edges (H).\n", g_vertices, h_vertices, g_edges, h_edges);
-        out(result_str);
+        out("G failed preprocessing checks against H");
+        sprintf(out_buffer, "%d vertices (G) against %d vertices (H). %d edges (G) against %d edges (H).", g_vertices, h_vertices, g_edges, h_edges);
+        out(out_buffer);
     }
     return result; // First thing: Simple graph minor check alg. Goes here
 }

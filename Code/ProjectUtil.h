@@ -8,6 +8,7 @@
 #include <time.h>
 
 #define INPUT_LENGTH 2048
+#define OUT_BUFFER_LENGTH 4096
 
 typedef struct graph {
     int** data;
@@ -19,6 +20,8 @@ typedef enum { FALSE, TRUE } bool;
 
 time_t timer;
 struct tm* timeinfo;
+
+char out_buffer[OUT_BUFFER_LENGTH];
 
 void out(char *data);
 void output_graph(graph_t **graph);
