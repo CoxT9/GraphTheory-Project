@@ -20,19 +20,14 @@ void out(char *data) {
 void output_graph(graph_t **graph) {
     // Take graph and write to stdout without extra logging
     int i;
-    int j;
-    int value;
     int n = (*graph)->num_vertices;
+    node_t* curr_node;
     for(i = 0; i < n; i++) {
         printf("Vertex %d: ", i);
-        for(j = 0; j < n; j++) {
-            value = (*graph)->data[i][j];
-            if(value) {
-                printf("%d", j);
-                if(j < n -1) {
-                    printf(" ");
-                }
-            }
+        curr_node = (*graph)->data[i];
+        while(curr_node) {
+            printf("%d ", curr_node->vertex_id);
+            curr_node = curr_node->next;
         }
         printf("\n");
     }
@@ -45,13 +40,13 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
     // Line 1: N
     // N lines: adjancies
     // 0 alone is eof
-
     int num_vertices = 0;
     int num_edges = 0;
     int value;
     int curr_vertex;
 
-    int** data;
+    node_t** data;
+    int *degrees;
     char *tok;
     char name_str[INPUT_LENGTH];
 
@@ -73,14 +68,16 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                     out(name_str);
                 } else {
                     num_vertices = atoi(input);
-                    data = init_graph(num_vertices);
+                    data = init_adjacencies(num_vertices);
+                    degrees = init_degrees(num_vertices);
                     graph_set = TRUE;
                 }
                 started = TRUE;
             } else {
                 if(!graph_set) {
                     num_vertices = atoi(input);
-                    data = init_graph(num_vertices);
+                    data = init_adjacencies(num_vertices);
+                    degrees = init_degrees(num_vertices);
                     graph_set = TRUE;
                 } else {
                     // nth line. also careful of huge lines.
@@ -94,8 +91,8 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                                 curr_vertex = (value*-1)-1;
                                 line++;
                             } else if(value > 0) {
-                                data[curr_vertex][value-1] = 1;
-                                data[value-1][curr_vertex] = 1;
+                                add_new_node(data, curr_vertex, value-1);
+                                degrees[curr_vertex]++;
                                 num_edges++;
                             }
                             tok = strtok(NULL, " ");
@@ -105,39 +102,51 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
             }
         }
     }
-    (*graph)->data = init_graph(num_vertices);
-    memcpy( (*graph)->data, data, num_vertices*num_vertices*sizeof(int));
+    (*graph)->data = init_adjacencies(num_vertices);
+    memcpy( (*graph)->data, data, num_vertices*sizeof(node_t*));
+
+    (*graph)->degrees = init_degrees(num_vertices);
+    memcpy( (*graph)->degrees, degrees, num_vertices*sizeof(int));
+
     (*graph)->num_vertices = num_vertices;
     (*graph)->num_edges = num_edges;
 }
 
-int **init_graph(int num_vertices) {
+node_t **init_adjacencies(int num_vertices) {
     int i;
-    int j;
-    int **data;
-
-    data = (int **)malloc(num_vertices * sizeof(int*));
+    node_t **data;
+    data = (node_t **)malloc(num_vertices * sizeof(node_t*));
     if(data) {
         for(i = 0; i < num_vertices; i++) {
-            data[i] = (int *)malloc(sizeof(int) * num_vertices);
-            for(j = 0; j < num_vertices; j++) {
-                data[i][j] = 0;
-            }
+            data[i] = NULL;
         }
     }
     return data;
 }
 
-// May want vertex degrees to be stored apriori
-int get_degree(graph_t **graph, int v, int g_vertices) {
-    int degree = 0;
+int *init_degrees(int num_vertices) {
     int i;
-    if(v < g_vertices) {
-        for(i = 0; i < g_vertices; i++) {
-            if((*graph)->data[v][i]) {
-                degree++;
-            }
+    int *degrees = (int *)malloc(sizeof(int) * num_vertices);
+    if(degrees) {
+        for(i = 0; i < num_vertices; i++) {
+            degrees[i] = 0;
         }
     }
-    return degree;
+    return degrees;
+}
+
+void add_new_node(node_t **data, int src, int dest) {
+    node_t *curr_node= (node_t*)malloc(sizeof(node_t*));
+    node_t *new_node = (node_t*)malloc(sizeof(node_t*));
+    new_node->vertex_id = dest;
+    new_node->next = NULL;
+    if(data[src]) {
+        curr_node = data[src]; 
+        while(curr_node->next) {
+            curr_node = curr_node->next;
+        }
+        curr_node->next = new_node;
+    } else {
+        data[src] = new_node;
+    }
 }

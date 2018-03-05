@@ -50,17 +50,18 @@ int get_total_friendly_vertices(graph_t **graph, int g_vertices, int g_edges, do
     int u;
     bool found_neighbour = FALSE;
     for(v = 0; v < g_vertices; v++) {
-        if(get_degree(graph, v, g_vertices) < degree_threshold) {
+        if((*graph)->degrees[v] < degree_threshold) {
             u = 0;
             while(u < g_vertices-1 && !found_neighbour) {
                 if(u != v) {
-                    found_neighbour = get_degree(graph, u, g_vertices) < degree_threshold;
+                    found_neighbour = (*graph)->degrees[u] < degree_threshold;
                 }
                 u++;
             }
             if(found_neighbour) {
                 // v is a friendly vertex
                 total_friendly_vertices++;
+                found_neighbour = FALSE;
             }
         }
     }
@@ -73,6 +74,9 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
     // This comes from Bodlaender 1992. In this original paper, he says to use 'any finite algorithm' for suff. small graphs
     // However, it's not clear why we would do that. The other TW algs are exponential. Stick with the linear one unless there is a problem with small graphs.
     // will need to impl the alg and decide what a tree decomp 'looks' like.
+    // this seems programatically correct but it is unclear if it is capturing the spirit of the algorithm.
+    // example: the tree width of K5 is not bounded by E(K4). This seems correct but need to find an example of something actually running
+    // it is still not a 100% guarantee that k is E(H). A lot of these numbers in fact seem odd. Sample data will be very helpful here
     const double c1 = 0.5;
     // const double c2 = 0.5;
 
@@ -83,10 +87,9 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
 
     (*decomposition)->treewidth_bounded = 0;
     out("Determining the tree decomposition of G...");
-    printf("%f\n", k*g_vertices-(double)(k*(k+1))/2);
+
     if( g_edges <= k * g_vertices - (double)(k*(k+1))/2 ) {
-        sprintf(out_buffer, "The tree width of G is possibly bounded by %d", k);
-        out(out_buffer);
+        out("The tree width of G is possibly bounded by E(H)");
 
         num_friendly_vertices = get_total_friendly_vertices(graph, g_vertices, g_edges, degree_threshold);
         if(num_friendly_vertices >= num_friendly_vertices_threshold) {
@@ -130,5 +133,5 @@ int graph_has_minor(graph_t **graph, graph_t **minor) {
         sprintf(out_buffer, "%d vertices (G) against %d vertices (H). %d edges (G) against %d edges (H).", g_vertices, h_vertices, g_edges, h_edges);
         out(out_buffer);
     }
-    return result; // First thing: Simple graph minor check alg. Goes here
+    return result;
 }
