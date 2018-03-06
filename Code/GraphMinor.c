@@ -9,6 +9,8 @@ This file exclusively includes code for the graph minor algorithm itself.
 Other code (ie: input parsing, outging, etc) can be found in a util source.
 Note that the graphs are 0-indexed. 
 Another file may be added for graph-theoretical utilities.
+
+Eventually this project may be split in terms of which algorithm is being run (ie: separate files for dependencies)
 */
 #include "GraphMinor.h"
 
@@ -68,6 +70,11 @@ int get_total_friendly_vertices(graph_t **graph, int g_vertices, int g_edges, do
     return total_friendly_vertices;
 }
 
+edgepair_t** get_maximal_matching(graph_t **graph, int num_vertices, int num_edges) {
+    // fill up a very large list then copy memory over
+    return NULL;
+}
+
 void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
     // given G = (V,E) and k, determine if G has a treewidth bounded by k
     // if yes, also give the composition
@@ -94,6 +101,9 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
         num_friendly_vertices = get_total_friendly_vertices(graph, g_vertices, g_edges, degree_threshold);
         if(num_friendly_vertices >= num_friendly_vertices_threshold) {
             // maximal matching 
+            edgepair_t **matching = get_maximal_matching(graph, g_vertices, g_edges);
+            printf("%d\n", *(int*)matching); // remove this
+
             out("G has a high number of friendly vertices.");           
         } else {
             // graph improvement
