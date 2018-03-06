@@ -71,8 +71,45 @@ int get_total_friendly_vertices(graph_t **graph, int g_vertices, int g_edges, do
 }
 
 edgepair_t** get_maximal_matching(graph_t **graph, int num_vertices, int num_edges) {
-    // fill up a very large list then copy memory over
-    return NULL;
+    // fill up a very large array then copy memory over
+    // the advantage of an array over a linked list is that while the ll will be faster to build, the array is indexible which we need
+    // if it becomes the case that indexing into the matching is not necessary, this may (should) change
+    // the approach: iterate over all vertices and check if there is an available pair. runs in O(E)
+    edgepair_t **matching = (edgepair_t**)malloc(sizeof(edgepair_t*)*(num_vertices*num_vertices));
+    node_t *curr_node;
+    bool found_edge;
+    int size = 0;
+    int i;
+    int visited[num_vertices];
+    int curr_neighbour;
+    for(i = 0; i < num_vertices; i++) {
+        visited[i] = 0;
+    }
+
+    for(i = 0; i < num_vertices; i++) {
+        if(!visited[i]) {
+
+            // find an unvisited neighbour. if one is found, add a new pair and mark that neighbour visited
+            found_edge = FALSE;
+            curr_node = (*graph)->adjacencies[i];
+            while(curr_node && !found_edge) {
+                curr_neighbour = curr_node->vertex_id;
+                if(!visited[curr_neighbour]) {
+                    visited[curr_neighbour] = 1;
+                    found_edge = TRUE;
+
+                    matching[size] = (edgepair_t*)malloc(sizeof(edgepair_t*));
+                    matching[size]->u = i;
+                    matching[size]->v = curr_neighbour;
+                    size++;
+                }
+                curr_node = curr_node->next;
+            }
+        }
+    }
+    edgepair_t **result = (edgepair_t**)malloc(sizeof(edgepair_t*)*size);
+    memcpy( result, matching, size*sizeof(edgepair_t*));
+    return result;
 }
 
 void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
@@ -95,14 +132,14 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
     (*decomposition)->treewidth_bounded = 0;
     out("Determining the tree decomposition of G...");
 
-    if( g_edges <= k * g_vertices - (double)(k*(k+1))/2 ) {
+    if(g_edges <= k * g_vertices - (double)(k*(k+1))/2 ) {
         out("The tree width of G is possibly bounded by E(H)");
 
         num_friendly_vertices = get_total_friendly_vertices(graph, g_vertices, g_edges, degree_threshold);
         if(num_friendly_vertices >= num_friendly_vertices_threshold) {
             // maximal matching 
-            edgepair_t **matching = get_maximal_matching(graph, g_vertices, g_edges);
-            printf("%d\n", *(int*)matching); // remove this
+            edgepair_t **matching = get_maximal_matching(graph, g_vertices, g_edges); // greedy-style matching
+            printf("%d\n", matching[0]->u); // remove this
 
             out("G has a high number of friendly vertices.");           
         } else {

@@ -17,7 +17,7 @@ typedef struct Node {
 } node_t;
 
 typedef struct {
-    node_t** data; // an array of nodes (linked lists)
+    node_t** adjacencies; // an array of nodes (linked lists)
     int *degrees;
     int num_vertices;
     int num_edges;
@@ -39,6 +39,6 @@ void output_graph(graph_t **graph);
 void generate_graph(graph_t **graph, char *path_to_graph);
 node_t **init_adjacencies(int num_vertices);
 int *init_degrees(int num_vertices);
-void add_new_node(node_t **data, int src, int dest);
+void add_new_node(node_t **adjacencies, int src, int dest);
 
 #endif

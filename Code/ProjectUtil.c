@@ -1,6 +1,6 @@
 #include "ProjectUtil.h"
 
-void out(char *data) {
+void out(char *output) {
     // printf data with timestamp
     time(&timer);
     timeinfo = localtime(&timer);
@@ -13,7 +13,7 @@ void out(char *data) {
         timeinfo->tm_hour,
         timeinfo->tm_min,
         timeinfo->tm_sec,
-        data
+        output
     );
 }
 
@@ -24,7 +24,7 @@ void output_graph(graph_t **graph) {
     node_t* curr_node;
     for(i = 0; i < n; i++) {
         printf("Vertex %d: ", i);
-        curr_node = (*graph)->data[i];
+        curr_node = (*graph)->adjacencies[i];
         while(curr_node) {
             printf("%d ", curr_node->vertex_id);
             curr_node = curr_node->next;
@@ -38,14 +38,14 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
     // Open file, parse into format and make up the graph
     // Line 0: Name (if not int)
     // Line 1: N
-    // N lines: adjancies
+    // N lines: adjacencies
     // 0 alone is eof
     int num_vertices = 0;
     int num_edges = 0;
     int value;
     int curr_vertex;
 
-    node_t** data;
+    node_t** adjacencies;
     int *degrees;
     char *tok;
     char name_str[INPUT_LENGTH];
@@ -68,7 +68,7 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                     out(name_str);
                 } else {
                     num_vertices = atoi(input);
-                    data = init_adjacencies(num_vertices);
+                    adjacencies = init_adjacencies(num_vertices);
                     degrees = init_degrees(num_vertices);
                     graph_set = TRUE;
                 }
@@ -76,7 +76,7 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
             } else {
                 if(!graph_set) {
                     num_vertices = atoi(input);
-                    data = init_adjacencies(num_vertices);
+                    adjacencies = init_adjacencies(num_vertices);
                     degrees = init_degrees(num_vertices);
                     graph_set = TRUE;
                 } else {
@@ -91,7 +91,7 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                                 curr_vertex = (value*-1)-1;
                                 line++;
                             } else if(value > 0) {
-                                add_new_node(data, curr_vertex, value-1);
+                                add_new_node(adjacencies, curr_vertex, value-1);
                                 degrees[curr_vertex]++;
                                 num_edges++;
                             }
@@ -102,8 +102,8 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
             }
         }
     }
-    (*graph)->data = init_adjacencies(num_vertices);
-    memcpy( (*graph)->data, data, num_vertices*sizeof(node_t*));
+    (*graph)->adjacencies = init_adjacencies(num_vertices);
+    memcpy( (*graph)->adjacencies, adjacencies, num_vertices*sizeof(node_t*));
 
     (*graph)->degrees = init_degrees(num_vertices);
     memcpy( (*graph)->degrees, degrees, num_vertices*sizeof(int));
@@ -114,14 +114,14 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
 
 node_t **init_adjacencies(int num_vertices) {
     int i;
-    node_t **data;
-    data = (node_t **)malloc(num_vertices * sizeof(node_t*));
-    if(data) {
+    node_t **adjacencies;
+    adjacencies = (node_t **)malloc(num_vertices * sizeof(node_t*));
+    if(adjacencies) {
         for(i = 0; i < num_vertices; i++) {
-            data[i] = NULL;
+            adjacencies[i] = NULL;
         }
     }
-    return data;
+    return adjacencies;
 }
 
 int *init_degrees(int num_vertices) {
@@ -135,18 +135,18 @@ int *init_degrees(int num_vertices) {
     return degrees;
 }
 
-void add_new_node(node_t **data, int src, int dest) {
+void add_new_node(node_t **adjacencies, int src, int dest) {
     node_t *curr_node= (node_t*)malloc(sizeof(node_t*));
     node_t *new_node = (node_t*)malloc(sizeof(node_t*));
     new_node->vertex_id = dest;
     new_node->next = NULL;
-    if(data[src]) {
-        curr_node = data[src]; 
+    if(adjacencies[src]) {
+        curr_node = adjacencies[src]; 
         while(curr_node->next) {
             curr_node = curr_node->next;
         }
         curr_node->next = new_node;
     } else {
-        data[src] = new_node;
+        adjacencies[src] = new_node;
     }
 }
