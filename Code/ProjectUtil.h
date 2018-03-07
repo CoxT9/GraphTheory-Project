@@ -23,10 +23,6 @@ typedef struct {
     int num_edges;
 } graph_t;
 
-typedef struct {
-  int treewidth_bounded;
-} tree_decomp_t;
-
 typedef enum { FALSE, TRUE } bool;
 
 time_t timer;

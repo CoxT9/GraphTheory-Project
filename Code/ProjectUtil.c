@@ -48,7 +48,6 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
     node_t** adjacencies;
     int *degrees;
     char *tok;
-    char name_str[INPUT_LENGTH];
 
     bool graph_set = FALSE;
     bool complete = FALSE;
@@ -64,8 +63,8 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                 // 0th line. Did graph have a name?
                 if(!isdigit(input[0])) {
                     // Graph name:
-                    sprintf(name_str, "Name of graph is: %s", input);
-                    out(name_str);
+                    sprintf(out_buffer, "Name of graph is: %s", input);
+                    out(out_buffer);
                 } else {
                     num_vertices = atoi(input);
                     adjacencies = init_adjacencies(num_vertices);

@@ -1,19 +1,12 @@
-# Comp 4510 - Sample OpenMP Makefile
-
-###############################################
-# Change these files names to match your own: #
-###############################################
+# Comp 4060 - Coding Project Makefile
+# Credit to Dr. R. Thulasiraman for providing the original makefile template in COMP 4510
 
 # name of the executable to be generated
-PROG = has_graph_minor
+PROG = get_tree_width
 # space-delimited list of header files
-HDRS = GraphMinor.h ProjectUtil.h
+HDRS = ProjectUtil.h TreeWidth.h Main.h
 # space-delimited list of source files
-SRCS = GraphMinor.c ProjectUtil.c
-
-#######################
-# Don't change these: #
-#######################
+SRCS = ProjectUtil.c TreeWidth.c Main.c
 
 # directory to store object files
 OBJDIR = object

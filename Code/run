@@ -1,3 +1,3 @@
 make clean
 make
-./has_graph_minor $1 $2
+./get_tree_width $1 $2
