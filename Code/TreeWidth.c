@@ -236,15 +236,6 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
     }
 }
 
-// The scope of this project has been greatly reduced.
-// Next steps:
-/*
-- finish off the algorithm, make sure it gives the decomposition too
-- test its correctness and performance against sage (it will be slow)
-- put together slides and report. done
-*/
-
-
 /* to finish alg:
 - get the G' by dropping i simp vertices
 - do the contract-all-M algorithm
@@ -252,4 +243,13 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
 - the brute force alg
 - grab tw and check
 - handle recursive yields (last 2 pts)
+*/
+
+
+/* now:
+- finish the alg
+- fix and run the alg
+- test against sage, get more graphs
+- put together slides
+- put together report
 */
