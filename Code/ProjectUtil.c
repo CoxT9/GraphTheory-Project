@@ -90,6 +90,7 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                                 curr_vertex = (value*-1)-1;
                                 line++;
                             } else if(value > 0) {
+                                // This code assumes that the graph is 'fully' described. (ie: gives all edges uv and vu)
                                 add_new_node(adjacencies, curr_vertex, value-1);
                                 degrees[curr_vertex]++;
                                 num_edges++;
@@ -148,4 +149,45 @@ void add_new_node(node_t **adjacencies, int src, int dest) {
     } else {
         adjacencies[src] = new_node;
     }
+}
+
+void get_ll_size(node_t **head) {
+    node_t *curr = *head;
+    int size = 0;
+    while(curr) {
+        size++;
+        curr = curr->next;
+    }
+    return size;
+}
+
+bool all_neighbours_present(graph_t **graph, int v, int w) {
+    bool all_present = FALSE;
+    if((*graph)->degrees[v] <= (*graph)->degrees[w]) {
+        all_present = all_nodes_present(&((*graph)->adjacencies[v]), &((*graph)->adjacencies[w]));
+    }
+    return all_present;
+}
+
+bool all_nodes_present(node_t **head_inner, node_t **head_outer) {
+    bool all_present = TRUE;
+    bool present;
+    curr_inner = *head_inner;
+    int u;
+    int v;
+
+    while(curr_inner && all_present) {
+        u = curr_inner->vertex_id;
+        present = FALSE;
+        curr_outer = *head_outer;
+        while(curr_outer && !present) {
+            if(u == curr_outer->vertex_id) {
+                present = TRUE;
+            } else {
+                curr_outer = curr_outer->next;
+            }
+        }
+        all_present = present;
+    }
+    return all_present;
 }

@@ -36,5 +36,8 @@ void generate_graph(graph_t **graph, char *path_to_graph);
 node_t **init_adjacencies(int num_vertices);
 int *init_degrees(int num_vertices);
 void add_new_node(node_t **adjacencies, int src, int dest);
+get_ll_size(node_t **head);
+bool all_nodes_present(node_t **head_inner, node_t **head_outer);
+bool all_neighbours_present(graph_t **graph, int v, int w);
 
 #endif
