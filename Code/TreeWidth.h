@@ -1,7 +1,7 @@
 #ifndef _TREE_WIDTH_H_
 #define _TREE_WIDTH_H_
 
-// Code that is relevant to Bodlaender's 1992 tree width bounding (tree with decomposition retrieval) algorithm
+// Code that is relevant to Bodlaender's 1992 tree width bounding (treewidth with decomposition retrieval) algorithm
 #include "ProjectUtil.h"
 
 #define SMALL_GRAPH_SIZE 10
@@ -15,7 +15,19 @@ typedef struct {
 
 typedef struct {
   int treewidth_bounded;
+  nested_node_t* vertex_subsets; // this is going to be a linked list of linked lists. each Xi contains n_i vertices
+  tree_node_t* tree_root;
 } tree_decomp_t;
+
+typedef struct {
+  node_t* entries; // a linked list of the vertices captured in this node
+  node_t* connections; // linked list of other treenodes this node is connected to
+} tree_node_t;
+
+typedef struct {
+  node_t* next;
+  node_t* value;
+} nested_node_t;
 
 int get_total_friendly_vertices(graph_t **graph, int g_vertices, int g_edges, double degree_threshold);
 int get_maximal_matching(edgepair_t **matching, graph_t **graph, int num_vertices);
@@ -29,3 +41,6 @@ bool is_i_simplical(graph_t **graph, int v, double degree_threshold);
 bool common_low_degree_neighbours(graph_t **graph, int w, int v, double degree_threshold);
 
 #endif
+
+// is there a way to get tw without decomposition? Is that useful?
+// Clarify why treewidth is a popular parameter and why it is useful for dynamic programming

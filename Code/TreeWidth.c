@@ -46,7 +46,7 @@ int get_maximal_matching(edgepair_t **matching, graph_t **graph, int num_vertice
             found_edge = FALSE;
             curr_node = (*graph)->adjacencies[i];
             while(curr_node && !found_edge) {
-                curr_neighbour = curr_node->vertex_id;
+                curr_neighbour = curr_node->value;
                 if(!visited[curr_neighbour]) {
                     visited[curr_neighbour] = 1;
                     found_edge = TRUE;
@@ -66,10 +66,69 @@ int get_maximal_matching(edgepair_t **matching, graph_t **graph, int num_vertice
     return size;
 }
 
+int contract_edge(graph_t **graph, int u, int v, int *new_degrees) {
+    int degree = (*graph)->degrees[u] + (*graph)->degrees[v];
+    node_t* contract_dest = (*graph)->adjacencies[u]; // contract into u
+    node_t* contract_src = (*graph)->adjacencies[v]; // contract from v
+
+    node_t* curr = contract_dest;
+    while(curr->next) {
+        curr = curr->next;
+    }
+    curr->next = contract_src;
+
+    int present[(*graph)->num_vertices];
+    memset(present, 0, (*graph)->num_vertices);
+    node_t* curr = contract_dest;
+    node_t* prev = NULL;
+
+    while(curr) {
+        if(present[curr->value]) {
+            prev->next = curr->next;
+            degree--;
+        } else {
+            present[curr->value] = 1;
+            prev = curr;
+        }
+        curr = curr->next;
+    }
+    return degree;
+}
+
 graph_t *get_contracted_graph(graph_t **graph, int g_vertices, edgepair_t **matching, int matching_size) {
-    // not sure how I can do this correctly
     graph_t *contracted_graph = (graph_t*)malloc(sizeof(graph_t*));
     *contracted_graph = **graph;
+    
+    int contracted[g_vertices];
+    int new_degrees[g_vertices]
+    memset(contracted, 0, g_vertices);
+    memset(new_degrees, 0, g_vertices);
+    // Since M is a matching, there is no chance of path contraction
+    int i;
+    int edge;
+    int degree_sum = 0;
+    edgepair_t* curr_contraction;
+    for(i = 0; i < matching_size; i++) {
+        curr_contraction = matching[i];
+        degree_sum += contract_edge(&contracted_graph, curr_contraction->u, curr_contraction->v, new_degrees);
+        contracted[curr_contraction->v] = 1;
+    }
+
+    // now copy over non-contracted edges into new list and make the new list the adj of the contracted graph
+    node_t* new_adj[g_vertices - matching_size];
+    int curr_vtx = 0;
+    for(i = 0; i < g_vertices; i++) {
+        if(!contracted[i]) {
+            new_adj[curr_vtx] = contracted_graph->adjacencies[i];
+            curr_vtx++;
+        }
+    }
+
+    contracted_graph->adjacencies = new_adj;
+    contracted_graph->num_vertices = g_vertices - matching_size;
+    contracted_graph->degrees = new_degrees;
+    contracted_graph->num_edges = degree_sum/2;
+
     return contracted_graph;
 }
 
@@ -80,12 +139,12 @@ bool common_low_degree_neighbours(graph_t **graph, int w, int v, double degree_t
     bool found;
 
     while(w_adj) {
-        if( (*graph)->degrees[w_adj.vertex_id] < degree_threshold) {
+        if( (*graph)->degrees[w_adj.value] < degree_threshold) {
             v_adj = (*graph)->adjacencies[v];
             found = FALSE;
 
             while(v_adj && !found) {
-                if(v_adj.vertex_id = w_adj.vertex_id) {
+                if(v_adj.value = w_adj.value) {
                     found = TRUE;
                     total_low_degree_neighbours++;
                 } else {
@@ -131,6 +190,7 @@ graph_t *get_improved_graph(graph_t **graph, int g_vertices, int k, double degre
 
 void get_decomp_brute_force(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
     out("Graph is small enough to permit brute-force evaluation.");
+    (*decomposition)->treewidth_bounded = 0;
 }
 
 bool is_i_simplical(graph_t **graph, int v, double degree_threshold) {
@@ -141,7 +201,7 @@ bool is_i_simplical(graph_t **graph, int v, double degree_threshold) {
         node_t *adj = (*graph)->adjacencies[v];
         bool friendly = FALSE;
         while(adj && !friendly) {
-            if((*graph)->degrees[adj.vertex_id] < degree_threshold) {
+            if((*graph)->degrees[adj.value] < degree_threshold) {
                 friendly = TRUE;
             } else {
                 adj = adj->next;
@@ -153,7 +213,7 @@ bool is_i_simplical(graph_t **graph, int v, double degree_threshold) {
             clique_neighbours = TRUE;
             while(clique_neighbours && adj) {
                 node_t *adj = (*graph)->adjacencies[v];
-                if( !all_neighbours_present(graph, v, adj->vertex_id) {
+                if( !all_neighbours_present(graph, v, adj->value) {
                     clique_neighbours = FALSE;
                 } else {
                     adj = adj->next;
@@ -176,12 +236,63 @@ node_t *get_i_simplical_vertices(graph_t **improved_graph, double degree_thresho
             }
 
             curr = (node_t*)malloc(sizeof(node_t*));
-            curr->vertex_id = i;
+            curr->value = i;
             curr = curr->next; // may be wrong
         }
     }
     // find all the vertices in G_i that fit the i-simplical criteria
     return i_simp_list_head;
+}
+
+void drop_i_simplical_vertices(graph_t **improved_graph, node_t* i_simplical_vertices_list_head) {
+    // for each v in isimp, remove v from g, adjust g as needed
+    int g_vertices = (*improved_graph)->num_vertices
+    int removals = 0;
+    int deleted[g_vertices];
+    memset(deleted, 0, g_vertices);
+
+    int delete;
+    node_t *curr = i_simplical_vertices_list_head;
+    node_t *nbr;
+    node_t *adj;
+    while(curr) {
+        removals++;
+        delete = curr->value;
+        deleted[curr->value] = 1;
+        (*improved_graph)->num_edges -= (*improved_graph)->degrees[delete];
+        nbr = (*improved_graph)->adjacencies[delete];
+        while(nbr) {
+            // for each neighbour, decrement degree and remove delete from adjacencies
+            adj = (*improved_graph)->adjacencies[nbr->value];
+            node_t* prev = NULL;
+            while(adj) {
+                if(adj->value == delete){
+                    prev->next = adj->next;
+                    adj = adj->next;
+                } else {
+                    prev = adj;
+                    adj = adj->next;
+                }
+            }
+            (*improved_graph)->degrees[nbr->value]--;
+            nbr = nbr->next;
+        }
+    }
+
+    node_t* new_adj[g_vertices - removals];
+    int new_degrees[g_vertices - removals]
+    int curr_vtx = 0;
+    for(i = 0; i < g_vertices; i++) {
+        if(!deleted[i]) {
+            new_adj[curr_vtx] = (*improved_graph)->adjacencies[i];
+            new_degrees[curr_vtx] = (*improved_graph)->degrees[i];
+            curr_vtx++;
+        }
+    }
+
+    (*improved_graph)->num_vertices -= removals;
+    (*improved_graph)->adjacencies = new_adj;
+    (*improved_graph)->degrees = new_degrees;
 }
 
 void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
@@ -200,7 +311,7 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
 
     double num_friendly_vertices_threshold = g_vertices/(4*k*k + 12*k + 16);
 
-    (*decomposition)->treewidth_bounded = 0;
+    (*decomposition)->treewidth_bounded = 0; // Assume unbounded unless the algorithm succeeds
     out("Determining the tree decomposition of G...");
 
     if(g_edges <= k * g_vertices - (double)(k*(k+1))/2 ) {
@@ -212,14 +323,57 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
             // maximal matching
             edgepair_t **matching = (edgepair_t**)malloc(sizeof(edgepair_t)*g_vertices);
             int matching_size = get_maximal_matching(matching, graph, g_vertices); // greedy-style matching
-            
+
             // contract edges in M from G. so get G . M
             graph_t *contraction = get_contracted_graph(graph, g_vertices, matching, matching_size);
             sprintf(out_buffer, " Found contracted graph of size %d", contraction->num_vertices);
             out(out_buffer);
 
             // recurse against G'
-            // need to put in the "brute force" algorithm as base case
+            tree_decomp_t* tdc = (tree_decomp_t*)malloc(sizeof(tree_decomp_t*));
+            get_tree_decomposition(&tw, &contraction, contraction->num_vertices, contraction->num_edges, k);
+
+            if(tdc->treewidth_bounded) {
+                // suppose G' got us k
+                // Then we can get a 2k+1 on G
+                tree_decomp_t* larger_decomposition = (tree_decomp_t*)malloc(sizeof(tree_decomp_t*));
+                larger_decomposition->tree_root = tdc->tree_root;
+
+                nested_node_t *curr = tdc->vertex_subsets;
+                nested_node_t *curr_new = larger_decomposition->vertex_subsets;
+
+                node_t *curr_xi_item;
+                node_t *curr_yi_item;
+
+                int x_vertex;
+                int transformed_vertex;
+                // ll transform and copy into new tree decomp
+
+                while(curr) {
+                    curr_new = (nested_node_t*)malloc(sizeof(nested_node_t*));
+
+                    curr_xi_item = curr->value;
+                    while(curr_xi_item) {
+                        curr_yi_item = (node_t*)malloc(sizeof(node_t*));
+
+                        if(!curr_new->value) {
+                            curr_new->value = curr_yi_item;
+                        }
+
+                        x_vertex = curr_xi_item->value;
+                        transformed_vertex = get_matching_repr(x_vertex, matching, matching_size);
+
+                        curr_yi_item->value = transformed_vertex;
+                        curr_xi_item = curr_xi_item->next;
+                        curr_yi_item = curr_yi_item->next;
+                    }
+                    curr = curr->next;
+                    curr_new = curr_new->next;
+                }
+
+                // finish with the alg in thm 2.10
+            }
+            
         } else {
             // graph improvement
             out("G has a low number of friendly vertices.");
@@ -227,28 +381,34 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
 
             node_t *i_simplical_vertices_list = get_i_simplical_vertices(&improved); // if we find a k+1 i simp return null (stop condition)
             if(i_simplical_vertices_list && get_ll_size(&i_simplical_vertices_list) >= int(C2*g_vertices)) {
-                // drop all i simp vertices from G' and recurse
+                // drop all i simp vertices from G'
+                drop_i_simplical_vertices(&improved, i_simplical_vertices_list);
 
-                // if G' too big, stop
-                // else build our decomp
+                // recurse against G'-i
+                tree_decomp_t* tdc = (tree_decomp_t*)malloc(sizeof(tree_decomp_t*));
+                get_tree_decomposition(&tdc, &improved, improved->num_vertices, improved->num_edges, k);
+               
+                // last check
+                if(tdc->treewidth_bounded) {
+                    (*decomposition)->treewidth_bounded = 1;
+                }
             }
         }
     }
 }
 
 /* to finish alg:
-- get the G' by dropping i simp vertices
-- do the contract-all-M algorithm
-- recursive calls
-- the brute force alg
-- grab tw and check
-- handle recursive yields (last 2 pts)
+- finish high friendly vtx case
+    - put last step into method
+    - impl matching repr function
+    - clarify alg from thm 2.10
+- impl brute force tree decomp algorithm
 */
 
 
 /* now:
 - finish the alg
-- fix and run the alg
+- run the alg
 - test against sage, get more graphs
 - put together slides
 - put together report

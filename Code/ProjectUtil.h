@@ -11,9 +11,11 @@
 #define INPUT_LENGTH 2048
 #define OUT_BUFFER_LENGTH 4096
 
+#define min(x, y) ( x < y ? x : y)
+
 typedef struct Node {
   struct Node* next;
-  int vertex_id;
+  int value;
 } node_t;
 
 typedef struct {

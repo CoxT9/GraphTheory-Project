@@ -26,7 +26,7 @@ void output_graph(graph_t **graph) {
         printf("Vertex %d: ", i);
         curr_node = (*graph)->adjacencies[i];
         while(curr_node) {
-            printf("%d ", curr_node->vertex_id);
+            printf("%d ", curr_node->value);
             curr_node = curr_node->next;
         }
         printf("\n");
@@ -138,7 +138,7 @@ int *init_degrees(int num_vertices) {
 void add_new_node(node_t **adjacencies, int src, int dest) {
     node_t *curr_node= (node_t*)malloc(sizeof(node_t*));
     node_t *new_node = (node_t*)malloc(sizeof(node_t*));
-    new_node->vertex_id = dest;
+    new_node->value = dest;
     new_node->next = NULL;
     if(adjacencies[src]) {
         curr_node = adjacencies[src]; 
@@ -177,11 +177,11 @@ bool all_nodes_present(node_t **head_inner, node_t **head_outer) {
     int v;
 
     while(curr_inner && all_present) {
-        u = curr_inner->vertex_id;
+        u = curr_inner->value;
         present = FALSE;
         curr_outer = *head_outer;
         while(curr_outer && !present) {
-            if(u == curr_outer->vertex_id) {
+            if(u == curr_outer->value) {
                 present = TRUE;
             } else {
                 curr_outer = curr_outer->next;

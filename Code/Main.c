@@ -49,11 +49,10 @@ int graph_has_bounded_tw(graph_t **graph) {
     int tw_bounded;
 
     treewidth_k = 500; // need to determine how to get k
-    decomposition = malloc(sizeof(tree_decomp_t*));
+    decomposition = (tree_decomp_t*)malloc(sizeof(tree_decomp_t*));
 
     get_tree_decomposition(&decomposition, graph, g_vertices, g_edges, treewidth_k);
     tw_bounded = decomposition->treewidth_bounded;
 
-    // this will be adjusted: return the tree decomposition
     return tw_bounded;
 }
