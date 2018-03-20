@@ -151,7 +151,7 @@ void add_new_node(node_t **adjacencies, int src, int dest) {
     }
 }
 
-void get_ll_size(node_t **head) {
+int get_ll_size(node_t **head) {
     node_t *curr = *head;
     int size = 0;
     while(curr) {
@@ -172,9 +172,9 @@ bool all_neighbours_present(graph_t **graph, int v, int w) {
 bool all_nodes_present(node_t **head_inner, node_t **head_outer) {
     bool all_present = TRUE;
     bool present;
-    curr_inner = *head_inner;
+    node_t* curr_inner = *head_inner;
+    node_t* curr_outer;
     int u;
-    int v;
 
     while(curr_inner && all_present) {
         u = curr_inner->value;
