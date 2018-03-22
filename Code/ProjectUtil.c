@@ -191,3 +191,33 @@ bool all_nodes_present(node_t **head_inner, node_t **head_outer) {
     }
     return all_present;
 }
+
+int contract_edge(graph_t **graph, int u, int v) {
+    int degree = 0;
+    node_t* contract_dest = (*graph)->adjacencies[u]; // contract into u
+    node_t* contract_src = (*graph)->adjacencies[v]; // contract from v
+
+    node_t* curr = contract_dest;
+    while(curr->next) {
+        curr = curr->next;
+    }
+    curr->next = contract_src;
+    int present[(*graph)->num_vertices];
+    memset(present, 0, (sizeof(int))*(*graph)->num_vertices);
+
+    curr = contract_dest;
+    node_t* prev = NULL;
+    present[u] = 1;
+
+    while(curr) {
+        if(present[curr->value]) {
+            prev->next = curr->next;
+        } else {
+            present[curr->value] = 1;
+            prev = curr;
+            degree++;
+        }
+        curr = curr->next;
+    }
+    return degree;
+}

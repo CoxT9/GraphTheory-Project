@@ -4,8 +4,8 @@
 #include "ProjectUtil.h"
 #include "TreeWidth.h"
 
-#define REQUIRED_ARGS 1
-#define BAD_ARGS_STR "Usage: %s <Path-To-Graph>"
+#define REQUIRED_ARGS 2
+#define BAD_ARGS_STR "Usage: %s <Path-To-Graph> <K>"
 
-int graph_has_bounded_tw(graph_t **graph);
+int graph_has_bounded_tw(graph_t **graph, int treewidth_k);
 #endif

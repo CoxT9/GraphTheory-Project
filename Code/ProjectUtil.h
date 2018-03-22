@@ -26,6 +26,27 @@ typedef struct {
     int num_edges;
 } graph_t;
 
+typedef struct {
+  int u;
+  int v;
+} edgepair_t;
+
+typedef struct nested_node_t {
+  struct nested_node_t* next;
+  node_t* value;
+} nested_node_t;
+
+typedef struct {
+  node_t* entries; // a linked list of the vertices captured in this node
+  node_t* connections; // linked list of other treenodes this node is connected to
+} tree_node_t;
+
+typedef struct {
+  int treewidth_bounded;
+  nested_node_t* vertex_subsets; // this is going to be a linked list of linked lists. each Xi contains n_i vertices
+  tree_node_t* tree_root;
+} tree_decomp_t;
+
 typedef enum { FALSE, TRUE } bool;
 
 time_t timer;
@@ -42,5 +63,6 @@ void add_new_node(node_t **adjacencies, int src, int dest);
 int get_ll_size(node_t **head);
 bool all_nodes_present(node_t **head_inner, node_t **head_outer);
 bool all_neighbours_present(graph_t **graph, int v, int w);
+int contract_edge(graph_t **graph, int u, int v);
 
 #endif

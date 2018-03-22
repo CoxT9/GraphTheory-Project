@@ -22,6 +22,10 @@ int main(int argc, char** argv) {
         return EXIT_SUCCESS;
     }
 
+    int tw_k = atoi(argv[2]);
+    sprintf(out_buffer, "Parameter K set to %d\n", tw_k);
+    out(out_buffer);
+
     out("Launching Tree Decomposition program...");
     generate_graph(&graph, argv[1]);
 
@@ -29,7 +33,7 @@ int main(int argc, char** argv) {
     output_graph(&graph);
 
     out("Launching Tree Decomposition Detection Algorithm...");
-    tree_width_bounded = graph_has_bounded_tw(&graph);
+    tree_width_bounded = graph_has_bounded_tw(&graph, tw_k);
 
     sprintf(out_buffer, "G has bounded tree width: %d", tree_width_bounded);
     // output the tree decomposition here
@@ -39,16 +43,13 @@ int main(int argc, char** argv) {
     return EXIT_SUCCESS;
 }
 
-int graph_has_bounded_tw(graph_t **graph) {
-
+int graph_has_bounded_tw(graph_t **graph, int treewidth_k) {
     int g_vertices = (*graph)->num_vertices;
     int g_edges = (*graph)->num_edges;
 
-    int treewidth_k;
     tree_decomp_t *decomposition;
     int tw_bounded;
 
-    treewidth_k = 500; // need to determine how to get k
     decomposition = (tree_decomp_t*)malloc(sizeof(tree_decomp_t*));
 
     get_tree_decomposition(&decomposition, graph, g_vertices, g_edges, treewidth_k);

@@ -4,9 +4,9 @@
 # name of the executable to be generated
 PROG = get_tree_width
 # space-delimited list of header files
-HDRS = ProjectUtil.h TreeWidth.h Main.h
+HDRS = ProjectUtil.h Bodlaender.h BruteForce.h TreeWidth.h Main.h
 # space-delimited list of source files
-SRCS = ProjectUtil.c TreeWidth.c Main.c
+SRCS = ProjectUtil.c Bodlaender.c BruteForce.c TreeWidth.c Main.c 
 
 # directory to store object files
 OBJDIR = object
