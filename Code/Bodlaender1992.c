@@ -1,4 +1,4 @@
-#include "Bodlaender.h"
+#include "Bodlaender1992.h"
 
 int get_total_friendly_vertices(graph_t **graph, int g_vertices, int g_edges, double degree_threshold) {
     int total_friendly_vertices = 0;

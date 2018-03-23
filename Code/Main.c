@@ -1,13 +1,13 @@
 /* Given a graph G, does G have a bounded tree width? If so, give the (minimum) tree decomposition of G
 
-1. Basic G input
-2. Basic Implementation and compare with Sage
-3. Bring complexity down to O(n)
-4. Metrics (find more data too)
-
-This file exclusively includes bootstrapping code for running the project itself
-Other code (ie: input parsing, the algorithm itself, etc) can be found in other sources.
-Note that the graphs are 0-indexed. 
+NOW:
+- Gather a suite of results
+Presentation:
+- proofs
+- algorithms
+- the process
+- there is definitely 20 minutes here. Look at how cool the algorithms are!
+- report: two implementations and compare. One worked on didnt. Why? Tradeoffs?
 */
 
 #include "Main.h"

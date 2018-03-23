@@ -221,3 +221,21 @@ int contract_edge(graph_t **graph, int u, int v) {
     }
     return degree;
 }
+
+int has_neighbour(graph_t **graph, int u, int v) {
+    node_t* curr = (*graph)->adjacencies[u];
+    return ll_search(curr, v);
+}
+
+int ll_search(node_t* head, int target) {
+    node_t* curr = head;
+    bool found = FALSE;
+    while(curr && !found) {
+        if(curr->value == target) {
+            found = TRUE;
+        } else {
+            curr = curr->next;
+        }
+    }
+    return found;
+}

@@ -2,11 +2,11 @@
 # Credit to Dr. R. Thulasiraman for providing the original makefile template in COMP 4510
 
 # name of the executable to be generated
-PROG = get_tree_width
+PROG = tree_width
 # space-delimited list of header files
-HDRS = ProjectUtil.h Bodlaender.h BruteForce.h TreeWidth.h Main.h
+HDRS = ProjectUtil.h Bodlaender1992.h Bodlaender2012.h TreeWidth.h Main.h
 # space-delimited list of source files
-SRCS = ProjectUtil.c Bodlaender.c BruteForce.c TreeWidth.c Main.c 
+SRCS = ProjectUtil.c Bodlaender1992.c Bodlaender2012.c TreeWidth.c Main.c 
 
 # directory to store object files
 OBJDIR = object

@@ -1,12 +1,16 @@
 #ifndef _PROJECT_UTIL_H_
 #define _PROJECT_UTIL_H_
 
+#define _BSD_SOURCE
 #include <ctype.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <math.h>
+#include <unistd.h>
+
 
 #define INPUT_LENGTH 2048
 #define OUT_BUFFER_LENGTH 4096
@@ -47,6 +51,11 @@ typedef struct {
   tree_node_t* tree_root;
 } tree_decomp_t;
 
+typedef struct generic_node_t {
+  struct generic_node_t* next;
+  void* data;
+} generic_node_t;
+
 typedef enum { FALSE, TRUE } bool;
 
 time_t timer;
@@ -64,5 +73,7 @@ int get_ll_size(node_t **head);
 bool all_nodes_present(node_t **head_inner, node_t **head_outer);
 bool all_neighbours_present(graph_t **graph, int v, int w);
 int contract_edge(graph_t **graph, int u, int v);
+int has_neighbour(graph_t **graph, int u, int v);
+int ll_search(node_t* head, int target);
 
 #endif

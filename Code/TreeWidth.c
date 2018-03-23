@@ -6,7 +6,8 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
     // This comes from Bodlaender 1992.
     // this seems programatically correct but it is unclear if it is capturing the spirit of the algorithm.
 
-    if(g_vertices < 2*k*k) {
+
+    if(g_vertices <= SMALL_GRAPH_SIZE) {
         get_decomp_brute_force(decomposition, graph, g_vertices, g_edges, k);
         return;
     }
