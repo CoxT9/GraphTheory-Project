@@ -34,9 +34,9 @@ int get_treewidth_dp(graph_t **graph) {
     candidates[0]->data = (void*)start_pair;
     candidates[0]->next = NULL;
     for(i = 1; i <= ((*graph)->num_vertices - clique_size); i++) {
-        candidates[i] = NULL;//(generic_node_t*)malloc(sizeof(generic_node_t*));
-       // candidates[i]->data = NULL; // no pairs in tw_i
-       // candidates[i]->next = NULL;
+        sprintf(out_buffer, "Iteration: %d\n", i);
+        out(out_buffer);
+        candidates[i] = NULL;      
 
         generic_node_t* prev_tw = candidates[i-1];
         treewidth_pair_t* prev_pair;

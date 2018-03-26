@@ -1,0 +1,392 @@
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: K4
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 3 
+Vertex 1: 0 2 3 
+Vertex 2: 0 1 3 
+Vertex 3: 0 1 2 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 3
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: K5
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 3 4 
+Vertex 1: 0 2 3 4 
+Vertex 2: 0 1 3 4 
+Vertex 3: 0 1 2 4 
+Vertex 4: 0 1 2 3 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 4
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: Complete Graph Six Vertices
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 3 4 5 
+Vertex 1: 0 2 3 4 5 
+Vertex 2: 0 1 3 4 5 
+Vertex 3: 0 1 2 4 5 
+Vertex 4: 0 1 2 3 5 
+Vertex 5: 0 1 2 3 4 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 5
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: CompleteBipartite33
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 3 5 
+Vertex 1: 0 2 4 
+Vertex 2: 1 3 5 
+Vertex 3: 0 2 4 
+Vertex 4: 1 3 5 
+Vertex 5: 0 2 4 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Iteration: 4
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 3
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: CompleteBipartite45
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 4 5 6 7 8 
+Vertex 1: 4 5 6 7 8 
+Vertex 2: 4 5 6 7 8 
+Vertex 3: 4 5 6 7 8 
+Vertex 4: 0 1 2 3 
+Vertex 5: 0 1 2 3 
+Vertex 6: 0 1 2 3 
+Vertex 7: 0 1 2 3 
+Vertex 8: 0 1 2 3 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Iteration: 4
+
+(26-3-2018 14:38:23) Iteration: 5
+
+(26-3-2018 14:38:23) Iteration: 6
+
+(26-3-2018 14:38:23) Iteration: 7
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 4
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: three-path
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 
+Vertex 1: 0 2 
+Vertex 2: 1 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 1
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: path-five
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 
+Vertex 1: 0 2 
+Vertex 2: 1 3 
+Vertex 3: 2 4 
+Vertex 4: 3 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 1
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: Wheel-6
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 3 4 5 
+Vertex 1: 0 2 5 
+Vertex 2: 0 1 3 
+Vertex 3: 0 2 4 
+Vertex 4: 0 3 5 
+Vertex 5: 0 1 4 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 3
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: Wheel-7
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 3 4 5 6 
+Vertex 1: 0 2 6 
+Vertex 2: 0 1 3 
+Vertex 3: 0 2 4 
+Vertex 4: 0 3 5 
+Vertex 5: 0 4 6 
+Vertex 6: 0 1 5 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Iteration: 4
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 3
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: Petersen
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 5 
+Vertex 1: 0 3 6 
+Vertex 2: 0 4 7 
+Vertex 3: 1 4 8 
+Vertex 4: 2 3 9 
+Vertex 5: 0 8 9 
+Vertex 6: 1 7 9 
+Vertex 7: 2 6 8 
+Vertex 8: 3 5 7 
+Vertex 9: 4 5 6 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Iteration: 4
+
+(26-3-2018 14:38:23) Iteration: 5
+
+(26-3-2018 14:38:23) Iteration: 6
+
+(26-3-2018 14:38:23) Iteration: 7
+
+(26-3-2018 14:38:23) Iteration: 8
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 4
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: Cube3
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 4 
+Vertex 1: 0 3 5 
+Vertex 2: 0 3 6 
+Vertex 3: 1 2 7 
+Vertex 4: 0 5 6 
+Vertex 5: 1 4 7 
+Vertex 6: 2 4 7 
+Vertex 7: 3 5 6 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Iteration: 4
+
+(26-3-2018 14:38:23) Iteration: 5
+
+(26-3-2018 14:38:23) Iteration: 6
+
+(26-3-2018 14:38:23) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 3
+
+(26-3-2018 14:38:23) G has bounded tree width: 1
+(26-3-2018 14:38:23) Parameter K set to 999
+
+(26-3-2018 14:38:23) Launching Tree Decomposition program...
+(26-3-2018 14:38:23) Name of graph is: Cube4
+
+(26-3-2018 14:38:23) Writing G to stdout...
+Vertex 0: 1 2 6 8 
+Vertex 1: 0 3 7 9 
+Vertex 2: 0 3 4 15 
+Vertex 3: 1 2 5 12 
+Vertex 4: 2 5 6 14 
+Vertex 5: 3 4 7 13 
+Vertex 6: 0 4 7 10 
+Vertex 7: 1 5 6 11 
+Vertex 8: 0 9 10 15 
+Vertex 9: 1 8 11 12 
+Vertex 10: 6 8 11 14 
+Vertex 11: 7 9 10 13 
+Vertex 12: 3 9 13 15 
+Vertex 13: 5 11 12 14 
+Vertex 14: 4 10 13 15 
+Vertex 15: 2 8 12 14 
+(26-3-2018 14:38:23) End of graph output
+
+(26-3-2018 14:38:23) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:23) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:23) Iteration: 1
+
+(26-3-2018 14:38:23) Iteration: 2
+
+(26-3-2018 14:38:23) Iteration: 3
+
+(26-3-2018 14:38:23) Iteration: 4
+
+(26-3-2018 14:38:23) Iteration: 5
+
+(26-3-2018 14:38:24) Iteration: 6
+
+(26-3-2018 14:38:28) Iteration: 7
+
+(26-3-2018 14:38:29) Iteration: 8
+
+(26-3-2018 14:38:29) Iteration: 9
+
+(26-3-2018 14:38:29) Iteration: 10
+
+(26-3-2018 14:38:29) Iteration: 11
+
+(26-3-2018 14:38:29) Iteration: 12
+
+(26-3-2018 14:38:29) Iteration: 13
+
+(26-3-2018 14:38:29) Iteration: 14
+
+(26-3-2018 14:38:29) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 6
+
+(26-3-2018 14:38:29) G has bounded tree width: 1
+(26-3-2018 14:38:29) Parameter K set to 999
+
+(26-3-2018 14:38:29) Launching Tree Decomposition program...
+(26-3-2018 14:38:29) Name of graph is: Tree
+
+(26-3-2018 14:38:29) Writing G to stdout...
+Vertex 0: 8 4 1 
+Vertex 1: 0 3 2 
+Vertex 2: 1 
+Vertex 3: 1 
+Vertex 4: 0 7 6 5 
+Vertex 5: 4 
+Vertex 6: 4 
+Vertex 7: 4 
+Vertex 8: 0 9 
+Vertex 9: 8 13 12 11 10 
+Vertex 10: 9 
+Vertex 11: 9 
+Vertex 12: 9 
+Vertex 13: 9 
+(26-3-2018 14:38:29) End of graph output
+
+(26-3-2018 14:38:29) Launching Tree Decomposition Detection Algorithm...
+(26-3-2018 14:38:29) G is small enough to permit brute-force evaluation.
+(26-3-2018 14:38:29) Iteration: 1
+
+(26-3-2018 14:38:29) Iteration: 2
+
+(26-3-2018 14:38:29) Iteration: 3
+
+(26-3-2018 14:38:29) Iteration: 4
+
+(26-3-2018 14:38:29) Iteration: 5
+
+(26-3-2018 14:38:29) Iteration: 6
+
+(26-3-2018 14:38:30) Iteration: 7
+
+(26-3-2018 14:38:31) Iteration: 8
+
+(26-3-2018 14:38:32) Iteration: 9
+
+(26-3-2018 14:38:32) Iteration: 10
+
+(26-3-2018 14:38:32) Iteration: 11
+
+(26-3-2018 14:38:32) Iteration: 12
+
+(26-3-2018 14:38:32) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 1
+
+(26-3-2018 14:38:32) G has bounded tree width: 1

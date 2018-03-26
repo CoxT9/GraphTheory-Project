@@ -65,7 +65,7 @@ char out_buffer[OUT_BUFFER_LENGTH];
 
 void out(char *data);
 void output_graph(graph_t **graph);
-void generate_graph(graph_t **graph, char *path_to_graph);
+void generate_graph(graph_t **graph, char *path_to_graph, int reflected);
 node_t **init_adjacencies(int num_vertices);
 int *init_degrees(int num_vertices);
 void add_new_node(node_t **adjacencies, int src, int dest);

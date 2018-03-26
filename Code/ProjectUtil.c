@@ -34,7 +34,7 @@ void output_graph(graph_t **graph) {
     out("End of graph output\n");
 }
 
-void generate_graph(graph_t **graph, char *path_to_graph) {
+void generate_graph(graph_t **graph, char *path_to_graph, int reflected) {
     // Open file, parse into format and make up the graph
     // Line 0: Name (if not int)
     // Line 1: N
@@ -92,6 +92,9 @@ void generate_graph(graph_t **graph, char *path_to_graph) {
                             } else if(value > 0) {
                                 // This code assumes that the graph is 'fully' described. (ie: gives all edges uv and vu)
                                 add_new_node(adjacencies, curr_vertex, value-1);
+                                if(!reflected) {
+                                    add_new_node(adjacencies, value-1, curr_vertex);
+                                }
                                 degrees[curr_vertex]++;
                                 num_edges++;
                             }

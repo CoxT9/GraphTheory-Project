@@ -7,7 +7,7 @@ Presentation:
 - algorithms
 - the process
 - there is definitely 20 minutes here. Look at how cool the algorithms are!
-- report: two implementations and compare. One worked on didnt. Why? Tradeoffs?
+- report: two implementations and compare. One worked one didnt. Why? Tradeoffs?
 */
 
 #include "Main.h"
@@ -17,6 +17,7 @@ int main(int argc, char** argv) {
     int tree_width_bounded = 0; 
 
     if(argc != REQUIRED_ARGS + 1) {
+        printf("%d\n", argc);
         sprintf(out_buffer, BAD_ARGS_STR, argv[0]);
         out(out_buffer);
         return EXIT_SUCCESS;
@@ -26,8 +27,10 @@ int main(int argc, char** argv) {
     sprintf(out_buffer, "Parameter K set to %d\n", tw_k);
     out(out_buffer);
 
+    int reflective = atoi(argv[3]);
+
     out("Launching Tree Decomposition program...");
-    generate_graph(&graph, argv[1]);
+    generate_graph(&graph, argv[1], reflective);
 
     out("Writing G to stdout...");
     output_graph(&graph);
