@@ -1,0 +1,51 @@
+The three proofs for the graph theory presentation:
+
+- Graph Minor Proof:
+Robertson Seymour theorem result: 
+- For any infinite set of graphs, one is (isomorphic to) a minor of another.
+- This means that every minor closed property can be characterized by a finite set of obstructions
+- why? Suppose it was infinite. Then it could be reduced. Contradiction
+- Other result: For fixed G and H, 'is H a minor of G' is in polynomial time
+- So that means that any minor closed property can be membership tested in polynomial time
+- The clear example: Graphs on surfaces. But there are other minor closed properties
+- Other minor closed properties: k vertex cover.
+- Take the graphs that are 2-vertex colorable. Take a minor of one of those graphs. it is also 2-vertex colorable. (other restrictions may apply)
+- We can check if input graph G is 2-v-colorable if it has a certain minor (ie: a 3-vertex colorable minor)
+
+- How the algorithms work:
+Bodleander 1992:
+Drop cliques or friendly vertices. Compress down and down until you have a tractable graph, apply upwards.
+
+Bodleander 2012:
+Dynamic Programming. Look at the previous candidates. Start with n-1, look for cliques and break down. Continue until you get through n iterations.
+
+
+- What is tree width:
+Tree Width is the width of the largest bag in the smallest tree decomposition. -1.
+A tree decomposition is a decomposition of a graph into _bags_ such that:
+- each vertex is covered in at least 1 bag
+- if two vertices are connected: they share a bag
+- one vertex appears in all connected bags (the bags form a tree)
+- the same vertex can be separated/copied across multiple bags
+
+
+- The use of bounded tree width for NP hard problems in dynamic programming:
+- Lots of algorithms that are NP hard (non decision problem) can be solved in P with dynamic programming when the tw is bounded/known
+- Weighted Max independent set
+
+- Max clique:
+- The clique is the bag itself. So if max tw is k, max clique is at most k+1 (because of the -1). Just look at the nodes and see which one has the clique. O(n)
+
+
+- Opinion: Is parametric complexity a worthwhile field to pursue?
+- Theoretical significance vs Benchmark Practicality. But its still not P. What are we trying to get to?
+
+- Pro: Allows us to take a closer look at the _nature_ of intractability. Different types, different classes. f(k) vs O(n)
+- Con: We are 'masking' the fact that we are not making the complexity any better. Moving the constant is like moving the bottleneck into a preprocessing step
+
+
+Now:
+- A bit more presentation outline
+- Do 3 questions of the assignment
+- Possibly deal with the RTS assignment
+- Upload passport info
