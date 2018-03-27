@@ -16,9 +16,22 @@ Robertson Seymour theorem result:
 Bodleander 1992:
 Drop cliques or friendly vertices. Compress down and down until you have a tractable graph, apply upwards.
 
+Split low/high degree vertices. Contract the maximal matching to form G', with tw 2k+1. Use existing results to backtrack.
+
+Or: add some vertices without increasing tw (between low degrees). Remove i-simplical (vertices that induce a clique). Improve->Drop i_simp->get tw of k.
+
+Good: runs in O(n)
+Bad: ... without recursion. Recursion cost: k^k^3 or k^8
+
+downey and fellows: recursion gets to k^8 (p. 216)
+they also say the algorithm itself has a doubly exponential constant (I belive k^k^3)
+
 Bodleander 2012:
 Dynamic Programming. Look at the previous candidates. Start with n-1, look for cliques and break down. Continue until you get through n iterations.
-
+principal of subproblem optimality. tw(s) = min v in S: max{tw(s-{v}), len(Q(S-{v}, v))} 
+-> the treewidth of some vertex (improper) subset S of V is the max between the set of S-v, or the number of vertices reachable in G via S-v (not in Su{v})
+-> kind of makes sense. tw: old, or we can create a new bag
+-> init: tw(empty set) = negative infinity, then grow
 
 - What is tree width:
 Tree Width is the width of the largest bag in the smallest tree decomposition. -1.
@@ -44,8 +57,91 @@ A tree decomposition is a decomposition of a graph into _bags_ such that:
 - Con: We are 'masking' the fact that we are not making the complexity any better. Moving the constant is like moving the bottleneck into a preprocessing step
 
 
-Now:
-- A bit more presentation outline
-- Do 3 questions of the assignment
-- Possibly deal with the RTS assignment
-- Upload passport info
+Tree width for graph minors:
+Graph Minor algorithm goes deep into Graph Minor theory which is not as relevant,
+but if the tw of G is bounded, the 'dynamic programming argument' is used 
+(same argument that makes NP hard problems polynomial time for bounded tw graphs)
+
+Big benifit: is the key metric for _every_ type of FPT property
+-> EMSO-describable properties are decidable in O(n) for bounded treewidth
+Courcelle's theorem. Use it: Dynamic Programming
+
+EMSO-SAT
+
+
+
+
+
+
+
+
+
+_______________________________________________________________________________________________________________________________
+outline for presentation:
+
+1. intro: treewidth
+- background
+- motivation
+- problem
+- solutions
+- results
+- conclusion + future
+
+background:
+original problem: graph genus. depends on graph minors. 
+Useful result: graph minor theory
+dependent problem: Tree width: "How treelike is the graph" (uses _dynamic programming argument_)
+-> NP hard problems decidable with tw bounded
+-> Turns out that the graph minor theory results have analagous theorems: Courcelle's
+-> Graph Minors is just one of many dynamic-programming-linear-time problems for bounded treewidth,
+    others are max clique, ham cyc
+    * keep an eye out for constants though!
+
+motivation: want to develop an implementation of the state of the art for tree width
+-> reconcile gap between theory and practice. Can it be done?
+argument: FPT != P. We're just moving a constant. An implementation would shed light on this
+-> if we can nail down a treewidth implementation, we will (a) be able to get closer to graph minor->graph genus, and will have results for a _lot_ of other problems
+
+problem: find the tree width of a graph
+- definition: the bags
+- minimize
+- decomposition
+goal: reasonably efficient
+
+solution: bodlaender 1992 + bodlaender 2012
+-> not very effective
+-> "linear time"
+1) depends on Huge constant (k^8 or k^k^3)
+2) Has base case of 2^N ("finite algorithm")
+-> the algorithm itself is very challenging. Data structures, pointers, O(n) search
+
+The base case: Dynamic programming
+-> Didn't exist until much later? Odd
+
+Result:
+Runs _very_ slowly (show results against Sage)
+-> Somehow Sage had a better implementation. Will have to look into this. Unexpected. Caching?
+-> The argument stands. The gap between theory and practice remains for good reason
+
+Treewidth remains to be a very important aspect of modern graph theory. Huge potential for all kinds of problems.
+Coucelle's theorem:
+If it can be expressed in EMSO, it is P-solvable for bounded TW graphs
+(graph minors fits right in)
+
+future:
+coding:
+1) better algorithm. Parallel? Less search! Improve data structures
+2) Dig into Sage. How did they do it? Are they onto something?
+
+3) New area of study: Parameterized complexity. Shines light into new class of problem: FPT.
+Pro FPT: We are making more strides in terms of what we can compute.
+Anti FPT: We have just moved a const out of the O(n), which is usually extremely large. Not unlike moving a bottleneck into preprocessing.
+
+TCS: Huge constants a problem. Debate remains on the nature of FPT
+
+Final:
+- Treewidth very important for many problems
+- Implemenations are not effective
+- But it does give insight into new areas of complexity theory
+
+Done.
