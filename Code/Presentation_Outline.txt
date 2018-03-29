@@ -145,3 +145,11 @@ Final:
 - But it does give insight into new areas of complexity theory
 
 Done.
+
+
+tuesday:
+- make a simple graph
+- do a chronological outline/practice
+
+- real time
+- graphs assignment
