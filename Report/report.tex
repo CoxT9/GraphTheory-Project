@@ -1,0 +1,62 @@
+\documentclass[12pt,conference]{IEEEtran}
+\usepackage{mathtools}
+
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\usepackage{stfloats}
+
+\DeclareMathOperator{\atantwo}{atan2}
+\graphicspath{ {images/} }
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+\raggedbottom
+
+\title{Treewidth and Tree Decompositions}
+
+\author{\IEEEauthorblockN{Taylor Cox}
+\IEEEauthorblockA{Department of Computer Science\\
+University of Manitoba\\
+Winnipeg, Manitoba\\
+Email: coxt3@myumanitoba.ca}}
+
+\maketitle
+
+\begin{abstract}
+One of the key results of Robertson and Seymour's Graph Minor Theory is the notion of Treewidth. Let G = (V,E) be an arbitrary graph. Informally, the treewidth of G tw(G) is an indicator of how treelike G is. Formally, tw(G) is the minimum width across all tree decompositions of G. A tree decomposition is an organization of G into a tree of bags, such that each bag contains one or more vertices and the union of all bags is equal to V. The width of a tree decomposition is the cardinality of its largest bag minus one. Many NP-Complete and NP-Hard graph problems are solvable in polynomial time for graphs of bounded treewidth. The substantial theoretical significance of the treewidth property has motivated extensive research into the development of algorithms and heuristics for determining the treewidth of a graph. In 1987, Arnborg proved that determining whether the treewidth of a graph is upper-bounded by some value k is NP-Complete. However, Bodlaender proved in 1996 that the treewidth problem is in P for fixed k. Despite the fact that the treewidth problem is fixed-parameter tractable, implementation of general treewidth algorithms may not be feasible. The absence of a comprehensive, practical algorithm for determining the treewidth of a graph leads to the conclusion that fixed-parameter tractibility may not be a sufficiently descriptive characterization of the treewidth problem and related problems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Treewidth, Tree Decomposition, Fixed Parameter Tractibility
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+
+\section{Related Work}
+
+\section{Background}
+
+\section{Motivation}
+
+\section{Problem Description}
+
+\section{Solution Techniques}
+
+\section{Experimental Setup}
+
+\section{Experimental Results}
+
+\section{Conclusions and Future Work}
+
+\begin{thebibliography}{1}
+\bibitem{hurricane-cost} Pielke Jr, Roger A., et al. Normalized hurricane damage in the United States: 1900–2005. Natural Hazards Review 9.1 (2008): 29-42
+\end{thebibliography}
+
+\end{document}
