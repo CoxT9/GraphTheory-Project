@@ -1,14 +1,16 @@
 This repository captures the project work accomplished during COMP 4060/7750 Winter 2018: Graph Theory. 
 
-This project is focused on a problem prerequisite to graph embedding and other graph-theoretic problems concerning minor-closed properties. The problem of interest is the graph minor problem:
+This project is focused on a problem prerequisite to graph genus, fixed minor containment and other graph-theoretic problems. The problem of interest is the treewidth bounding problem:
 
-"Given a graph G and a fixed minor H, does G have a minor H?"
+"Given a graph G and a constant k, does G have treewidth <= k?""
 
-The first algorithm to answer to this question was given by Robertson and Seymour in 1995 with an O(n3) algorithm which has impractical dependence on large constants. Kawarabayashi then proposed a O(n2) algorithm in 2009, followed by a O(nm) algorithm in 2010 (where m is the number of edges). Kawarabayashi's algorithms are thought to be much more efficient.
+The first thought put into this problem was by Bretele and Brioschi in the 1970s, where they determiend that many NP hard problems can be decided in P for graphs of bounded "dimension". Robertson and Seymour revisited Treewidth in the 1980s as part of their development of Graph Minor Theory, but gave no algorithms for determining treewidth. In 1992, Bodlaender gave a "linear time" algorithm for fixed-k treewidth (If k is part of the input, the Treewidth problem in NP-Complete). However, the algorithm suffers an impractical dependence on enourmous constants w.r.t k. Since 1992, many heuristics, algorithms and approximations have been developed in pursuit of the treewidth property. In contrast to the enormous theoeretical benefits of treewidth and tree-decompositions, no general-purpose algorithm (fixed parameter or otherwise) exists to determine the treewidth of a graph.
 
-This project will include the following:
-1. Implementation of Kawarabayashi's O(nm) algorithm
-2. Practical and Theoretical comparison against the only other known implementation (the one on Sage)
-3. Discussion of impact of the graph minor algorithm (particularly, contributions to complexity theory)
+This project covers the following:
+1. Background, Motivation and Relevant literature to problems concerning treewidth and tree-decompositions
+2. An attempt to implement Bodlaender's 1992 algorithm, and a successful implementation of Bodlaender's 2012 dynamic programming (exponential time) algorithm.
+3. Analysis of both algorithms. Summary: B1992 is not meant to be implemented. B2012 is in need of optimization (but will remain slow for large graphs)
+4. Benchmarking of B2012 against the treewidth implementation given in Sage. Correctness, efficiency, detailing of optimizations.
+3. Discussion of the widespread theoretical impact of treewidth. Polynomial time solutions for NP-Hard problems where G has bounded treewidth. Also, Courcelle's theorem.
 
 Project author: Taylor Cox (Professor: Dr. William Kocay)
