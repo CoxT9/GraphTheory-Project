@@ -12,6 +12,7 @@ int found_in_tw_pair(treewidth_pair_t* curr_pair, int v) {
 }
 
 int get_treewidth_dp(graph_t **graph) {
+    out("Launching dynamic programming algorithm for treewidth...\n");
     int n = (*graph)->num_vertices;
     int upper_bound = n-1;
     int* clique_vertices;
