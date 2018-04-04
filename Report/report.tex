@@ -49,9 +49,9 @@ A key result of Robertson and Seymour's Graph Minor Theory is the notion of tree
 
 Many NP-Complete and NP-Hard graph problems are solvable in polynomial time for graphs of bounded treewidth \cite{bodlaender-treewidth-power}. Such problems include Three-Colorability, Max-Clique and Minor Containment. The substantial theoretical significance of the treewidth property has motivated extensive research into approaches for determining the treewidth of a graph. For a general graph $G$ of nonzero genus, it is NP-Complete to determine whether $tw(G) \leq k$ for some $k$. When limited to the planar graphs, is not known whether the treewidth problem is in P or NP \cite{planar-treewidth-unsolved}. Approximation, Heuristic, Dynamic Programming and Fixed-Parameter approaches have all been developed for the purpose of finding the treewidth for general graphs, with varying degrees of success \cite{treewidth-survey}. 
 
-This report evaluates two treewidth algorithms in terms of their programmatic and computational complexity. The first algorithm is Bodlaender's 1992 fixed-paramater treewidth algorithm \cite{bodlaender-1992}, and is ultimately determined to be impractical for usage outside of theoretical computer science. The second algorithm explored is Bodlaender's 2012 dynamic programming algorithm \cite{bodlaender-2012}. A C implementation of this algorithm is benchmarked against the implementation provided in Sage, a standard mathematical software package \cite{sage-original}. Comparative results indicate a need to employ further optimizations in order to decrease the algorithm's runtime. However, the potential for improvement to the algorithm is limited due to its exponential nature. The Sage benchmarks themselves do not run in graphs of more than 100 vertices.
+Two treewidth algorithms are evaluted in terms of their programmatic and computational complexity. The first algorithm is Bodlaender's 1992 fixed-paramater treewidth algorithm \cite{bodlaender-1992}, and is ultimately determined to be impractical for usage outside of theoretical computer science. The second algorithm explored is Bodlaender's 2012 dynamic programming algorithm \cite{bodlaender-2012}. A C implementation of this algorithm is benchmarked against the implementation provided in Sage, a standard mathematical software package \cite{sage-original}. Comparative results indicate a need to employ further optimizations in order to decrease the algorithm's runtime. However, the potential for improvement to the algorithm is limited due to its exponential nature. The Sage benchmarks themselves do not run in graphs of more than 100 vertices.
 
-The remainder of this report is structured as follows: Section II captures a formal description of the treewidth problem itself. Sections III and IV describe the background and related literature to the treewidth problem, and outline the motivation for implementing algorithms for treewidth. In sections V through VII, implementations of Bodlaender's 1992 and 2012 algorithms will be described and critically evaluated. Finally, section VIII will deliver the key conclusions of this project, accompanied by possible directions of future work from theoretical and implementation perspectives.
+The remainder of this work is structured as follows: Section II captures a formal description of the treewidth problem itself. Sections III and IV describe the background and related literature to the treewidth problem, and outline the motivation for implementing algorithms for treewidth. In sections V through VII, implementations of Bodlaender's 1992 and 2012 algorithms will be described and critically evaluated. Finally, section VIII will deliver the key conclusions of this project, accompanied by possible directions of future work from theoretical and implementation perspectives.
 
 \section{Problem Description}
 
@@ -144,15 +144,15 @@ The treewidth problem is NP-Complete, and the minimal tree decomposition problem
 
 \section{Background}
 
-Treewidth and tree decompositions have been thoroughly explored in the literature. Research perspectives include range from the purely theoretical to the purely practical points of view. The first recorded examination of the treewidth property is from Bertelé et al in 1972 \cite{treewidth-original}. Treewidth was originally referred to as graph \textit{dimension}, and was known to be a valuable property with respect to the solvability of NP-hard problems. The treewidth literature is primarily categorized into works developing methods for determining treewidth, and works exploring the power of the treewidth property. The remainder of this section is divided the same way.
+Treewidth and tree decompositions have been thoroughly explored in the literature. Research perspectives include range from the purely theoretical to the purely practical points of view. The first recorded examination of the treewidth property is from Bertel\'e et al in 1972 \cite{treewidth-original}. Treewidth was originally referred to as graph \textit{dimension}, and was known to be a valuable property with respect to the solvability of NP-hard problems. The treewidth literature is primarily categorized into works developing methods for determining treewidth, and works exploring the power of the treewidth property. The remainder of this section is divided the same way.
 
 \subsection{Determining Treewidth}
 
-After initial investigation by Bertelé, the treewidth property remained unexplored for some time. In 1984, Robertson and Seymour gave a re-examination of treewidth as part of Graph Minor Theory \cite{treewidth-rob-seymour}. While Robertson and Seymour had shown the theoretical and algorithmic significane of treewidth, no algorithms yet existed to determine $tw(G)$. By 1987, Arnborg had proven that the treewidth problem is NP-Complete \cite{arnborg-np-complete}. However, Bodlaender gave an algorithm in 1992 to determine a fixed-parameter variant of the treewidth problem \cite{bodlaender-1992}. Bodlaender's algorithm answered the following question: ``given a graph G and a \textit{fixed constant} k, does G have treewidth k or less?''. The algorithm proved that the treewidth problem is fixed-parameter tractable. Bodlaender was able to prove that when k is held fixed (and thus is not captured in the O(*) measurement of the algorithm), the algorithm runs in O(n) against the size of the graph. However, the algorithm is known to have a recursive depth of up to $n^{8}$ and depends on a constant as large as $k^{k^{3}}$ \cite{bodlaender-problems}. Therefore, Bodlaender's algorithm is generally considered impractical for implementation \cite{fellows-on-bodlaender}. 
+After initial investigation by Bertelé, the treewidth property remained unexplored for some time. In 1984, Robertson and Seymour gave a re-examination of treewidth as part of Graph Minor Theory \cite{treewidth-rob-seymour}. While Robertson and Seymour had shown the theoretical and algorithmic significane of treewidth, no algorithms yet existed to determine $tw(G)$. By 1987, Arnborg had proven that the treewidth problem is NP-Complete \cite{arnborg-np-complete}. However, Bodlaender gave an algorithm in 1992 to determine a fixed-parameter variant of the treewidth problem \cite{bodlaender-1992}. Bodlaender's algorithm answered the following question: ``given a graph G and a \textit{fixed constant} k, does G have treewidth k or less?''. The algorithm proved that the treewidth problem is fixed-parameter tractable. Bodlaender was able to prove that when k is held fixed (and thus is not captured in the O(*) measurement of the algorithm), the algorithm runs in O(n) against the size of the graph. However, the algorithm is known to have a recursive depth of up to $k^{8}$ and depends on a constant as large as $k^{k^{3}}$ \cite{bodlaender-problems}. Therefore, Bodlaender's algorithm is generally considered impractical for implementation \cite{fellows-on-bodlaender}. Reed gave an improvement to Bodlaender's algorithm with a recursion depth of up to $k^{2}$ \cite{reed-tw-improvement}. However, Reed's algorithm also bears a prohibitive dependency on large hidden constants \cite{reed-tw-analysis}.
 
 Other alternatives in the literature have been explored for determining $tw(G)$. These alternatives focus on heuristics for treewidth bounding. Many modern heuristics for treewidth rely on the notion of a \textit{perfect elimination ordering}. For $G=(V,E)$, A perfect elimination ordering is an ordering $\pi$ of $V$ where the $i$th vertex of $\pi$ is simplical in the subgraph formed by all vertices from $i$ to $n$. A vertex is simplical if its neighbours induce a clique. Algorithms for generating perfect elimination orderings also serve as heuristics for treewidth upper bounding. 
 
-One heuristic based on simplical vertices and eliminiation orderings is the minimum degree heuristic \cite{min-degree-upper-bound}. In this heuristic, choose a vertex $v$ of minimum degree, introduce edges such that $v$ is simplical. Let the new graph be $G'$. Build a tree decomposition in $G'$ containing some bag $Y$ that covers each neighbour of $v$ (by theorem 2, every clique in $G$ forms a bag in $X$). A new bag - one that contains $v$ and its neighbours - is attached to $Y$. This gives a tree decomposition in $G$. This heuristic may not produce a minimal tree decomposition, but it will give an upper bound for tree width.
+One heuristic based on simplical vertices and eliminiation orderings is the minimum degree heuristic \cite{min-degree-upper-bound}. In this heuristic, choose a vertex $v$ of minimum degree, introduce edges such that $v$ is simplical. Let the new graph be $G'$. Build a tree decomposition in $G'$ containing some bag $Y$ that covers each neighbour of $v$ (by theorem 2, every clique in $G$ forms a bag in $X$). A new bag - one that contains $v$ and its neighbours - is attached to $Y$. This gives a tree decomposition in $G$. This heuristic may not produce a minimal tree decomposition, but it will give an upper bound for treewidth.
 
 The algorithmic focus of this report is on exact algorithms for treewidth. The standard algorithm for determining treewidth is developed by Bodlaender, in 2012 \cite{bodlaender-2012}. The algorithm given uses dynamic programming, and functions similar to the Held-Karp Travelling Salesman Problem dynamic programming algorithm. The algorithm begins with an empty treewidth of infinite weight, and tightens the bound on the treewidth until a minimal decomposition is found. The algorithm takes advantage of the minimax problem that arises in treewidth computation. The algorithm uses that fact treewidth is the \textit{maximum} cardinality of the \textit{minimum} tree decomposition to develop a principle of optimality as needed for a dynamic programming algorithm. The algorithm relies on the max clique of $G$ as a stopping condition, since the $tw(G)$ cannot be exceeded by the cardinality of the max clique. Bodlaender's 2012 dynamic programming algorithm produces exact values for treewidth, but runs in O($2^{n}$) time.
 
@@ -160,17 +160,81 @@ Many algorithms exist to determine or approximate the treewidth of the graph. Si
 
 \subsection{Treewidth Significance}
 
-Robertson and Seymour had used treewidth as part of their efforts to prove Wagner's Conjecture. They first determined that planar graphs of bounded treewidth formed a well-quasi-ordering: for any planar obstruction, the family of planar graphs characterized by that obstruction have a treewidth bounded by the size of the obstruction \cite{seymour-stack-overflow}. The usage of treewidth bounding as part of minor closed-well-quasi ordering for general graphs would constitute the next step of Robertson and Seymour's work.
+Robertson and Seymour use treewidth as part their proof of Wagner's Conjecture. Wagner's conjecture (also known as the Robertson-Seymour theorem) states that every minor-closed family of graphs is characterizable by a finite set of forbidden minors, also referred to as obstructions. Combined with the proof (also by Robertson and Seymour) that there exists a polynomial time algorithm for the fixed minor containment problem, it is clear that all minor-closed graph properties are polynomial time membership testable. Without the notion of treewidth, these results would not be obtainable. Robertson and Seymour first determined that planar graphs of bounded treewidth formed a well-quasi-ordering: for any planar obstruction, the family of planar graphs characterized by that obstruction have a treewidth bounded by the size of the obstruction \cite{seymour-stack-overflow}. Robertson and Seymour then generalized the bounded treewidth result to form well-quasi-orderings for families of general graphs closed under taking minors. Bounded treewidth leads to polynomial time algorithms for fixed minor containment, graph embeddability, and other algorithms concerning minor-closed properties. The treewidth property itself is also minor-closed. Therefore, taking the minor of a graph with treewidth at most k gives another graph of treewidth at most k. 
+
+Outside of graph minor theory, the treewidth parameter is known to give polynomial time solutions for many NP-Hard problems. The algorithmic potential treewidth was recognized by both Bertel\'e and Robertson and Seymour. However, no progress was made in the algorithmic benefits of treewidth until Bodlaender explored the usage of bounded treewidth for dynamic programming \cite{treewidth-dynamic-programming-1988}. It was determined that graphs which are sufficiently ``tree-like'' (those of bounded treewidth) lend themselves to be processed efficiently with dynamic programming algorithms. Dynamic programming soltuions for graphs of bounded treewidth are known for problems including Maximum independent set and Hamiltonian Cycle. Similar results are produced by Arnborg, who showed that partial k-trees (graphs of treewidth bounded by a constant k) have \textit{linear time} solutions for many NP-Hard problems. These solutions are also based on dynamic programming \cite{arnborg-linear-treewidth-algs}. The list of solvable NP-Hard problems for graphs of bounded treewidth is highly expansive. To illustrate the power of the treewidth property, polynomial time solvability proofs for bounded-treewidth variants of 3-colorability and max clique are now given. Note that the resulting algorithms are linear time with respect to $n$, with a constant value dependent on $tw(G)$.
+
+\begin{theorem}
+  Let $G=(V,E)$ be a graph with a known tree decomposition $D=(X,T)$ of width $w$. 3-colorability can be solved on $G$ in $3^{w}*O(n)$ time.
+\end{theorem}
+
+\textit{Proof:} Dynamic Programming is used on $X$. Choose a root bag $X_{1}$ arbitrarily. Partition the vertices of $X_{1}$ into 3 color classes based on their connectivity. Extend the coloring to connected bags from $X_{1}$ in $T$. Repeat for each bag, backtracking as needed in case of conflict. Either an unresolvable conflict is found, or a coloring of the vertices is given. $\square$
+
+\begin{theorem}
+  Let $G=(V,E)$ be a graph with a known tree decomposition $D=(X,T)$ of width $w$. Max-clique can be solved on $G$ in $2^{w}*O(n)$ time.
+\end{theorem}
+
+\textit{Proof:} For each bag in $X$, compute the maximum clique in $X$ using a standard backtracking algorithm. Sufficient algorithms include \cite{max-clique-exp-time}. The maximum clique across all bags is the maximum clique of $G$. Since $w$ is a known constant parameter, execution of the maximum clique algorithm is excluded from the $O(*)$ complexity. $\square$
+\\
+\\
+The treewidth property is highly significant for the development of solutions to NP-Hard problems. The list of solvable NP-hard problems for graphs of bounded treewidth is highly extensive. As proved by Courcelle in 1990 \cite{courcelle-original}, \textit{all} graph properties describable in extended monadic second order logic are linear-time decidable for graphs of bounded treewidth. Second order logic is the logical system that permits quantification over sets and variables (first order logic exclusively permits the quantification over individual variables). Monadic second order logic disallows the quantification over subsets. A second order logic system is \textit{extended} when applied to the logic of graphs. Extended monadic second order (EMSO) logic permits the quantification over vertices, edges, vertex-sets, and edge-sets.
+
+\begin{theorem}[Courcelle's Theorem]
+  Let $G=(V,E)$ be a graph with a known tree decomposition $D(X,T)$ of width $w$. Let $M$ be some extended monadic second order logic-describable property formulated as a quantificational sentence. $M$ is linear time decidable on $G$.
+\end{theorem}
+
+\textit{proof:} 
+  The proof by Courcelle relies on tree automata. An algorithm is given that accepts $G$ and $M$ and decides whether $G$ satisfies $M$. $M$ can be linear-time translated into a sentence $M'$ such that $D$ satisfies $M'$ iff $G$ satisfies $M$. The proof is given in detail in \cite{courcelle-original}. $\square$
+\\
+\\
+Many of the algorithms that are solvable for graphs of bounded treewidth rely on deriving solutions for subproblems in each bag. Problems independently solvable on bags of a tree decomposition are therefore parallelizable. In the maximum clique case, up to n processes are able to independently compute the maximum clique of each bag. Processes need only communicate to determine the globally maximum clique. It must also be noted that the linear time algorithms proposed rely on exponential contants with respect to $w$. Exponential dependence on $w$ is not unique to the example problems shown. The exponential constant factors in bounded treewidth ``linear time'' algorithms results in the impracticality of such algorithms for large values of $w$.
+
+Despite the impracticality of some tree decomposition-based algorithms, the theoretical benefits of the treewidth property are more than sufficient to warrant research efforts into the development of algorithms for determining treewidth and generating tree decompositions. Since every EMSO-describable property is linear time decidable for graphs of bounded treewidth, the exploration of treewidth and tree decomposition algorithms is a highly rewarding endeavour.
+
 
 \section{Motivation}
 
+% why am I doing this paper?
+% treewidth is very powerful
+% current techniques are poor
+% if we fixed the techniques, we would be in a good seat.
+
 \section{Solution Techniques}
+
+% there are lots of solutions out there but here are some that I tried
+
+% bodlaender 1992:
+% how it works. overview. pseudocode. description. proofs
+% why does matching/simplicals give tw? elim ordering and minor closed
+% why it didn't work. data structures. constants and recursion
+
+% bodlaender 2012:
+% meant to be the base case for b1992
+% how it works. overview. pseudocode. description. proofs
+% minimal formula. what are we comparing. what are we growing?
+% usage of max clique
+% how it worked out. the implementation was successful
 
 \section{Experimental Setup}
 
+% what did I try? What did I use?
+% which graphs. large and small. benchmarks. what are we looking for?
+
 \section{Experimental Results}
 
+% standard benchmarks: b2012 basically meets the mark
+% big graphs (3): b2012 does not make it
+% likely need to optimize
+% but look: asymm and large graphs did _not_ work in sage
+% so the potential to optimize is limited
+% the solutions are overall not great for treewidth
+
 \section{Conclusions and Future Work}
+
+% treewidth is awesome. but it's super hard to find
+% in the future we need:
+% (1) continue developing algorithms and heuristics. parallelize? improve? ...
+% (2) adjust our notion of treewidth. FPT useful or misleading? need to capture practical difficulty otherwise what are we doing
 
 \begin{thebibliography}{1}
 \bibitem{treewidth-rob-seymour}
@@ -186,6 +250,12 @@ Robertson and Seymour had used treewidth as part of their efforts to prove Wagne
 \bibitem{fellows-on-bodlaender}
 \bibitem{min-degree-upper-bound}
 \bibitem{seymour-stack-overflow}
+\bibitem{reed-tw-improvement}
+\bibitem{reed-tw-analysis}
+\bibitem{arnborg-linear-treewidth-algs}
+\bibitem{treewidth-dynamic-programming-1988}
+\bibitem{max-clique-exp-time}
+\bibitem{courcelle-original}
 \end{thebibliography}
 
 \end{document}
