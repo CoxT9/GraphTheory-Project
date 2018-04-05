@@ -41,7 +41,7 @@ int get_maximal_matching(edgepair_t **matching, graph_t **graph, int num_vertice
 
     for(i = 0; i < num_vertices; i++) {
         if(!visited[i]) {
-
+            visited[i] = 1;
             // find an unvisited neighbour. if one is found, add a new pair and mark that neighbour visited
             found_edge = FALSE;
             curr_node = (*graph)->adjacencies[i];
