@@ -1,0 +1,45 @@
+(5-4-2018 19:11:33) Iteration: 1
+
+(5-4-2018 19:11:33) Iteration: 2
+
+(5-4-2018 19:11:33) Iteration: 3
+
+(5-4-2018 19:11:33) Iteration: 4
+
+(5-4-2018 19:11:42) Iteration: 5
+
+(5-4-2018 19:15:7) Iteration: 6
+
+(5-4-2018 19:39:18) Iteration: 7
+
+(5-4-2018 20:48:19) Iteration: 8
+
+(5-4-2018 21:53:33) Iteration: 9
+
+(5-4-2018 22:14:54) Iteration: 10
+
+(5-4-2018 22:16:15) Iteration: 11
+
+(5-4-2018 22:16:15) Iteration: 12
+
+(5-4-2018 22:16:15) Iteration: 13
+
+(5-4-2018 22:16:15) Iteration: 14
+
+(5-4-2018 22:16:15) Iteration: 15
+
+(5-4-2018 22:16:15) Iteration: 16
+
+(5-4-2018 22:16:15) Iteration: 17
+
+(5-4-2018 22:16:15) Iteration: 18
+
+(5-4-2018 22:16:15) Iteration: 19
+
+(5-4-2018 22:16:15) Iteration: 20
+
+(5-4-2018 22:16:15) Iteration: 21
+
+(5-4-2018 22:16:15) Exponential Time Dynamic Programming Yielded a Tree-Width Result of 12
+
+(5-4-2018 22:16:16) G has bounded tree width: 1

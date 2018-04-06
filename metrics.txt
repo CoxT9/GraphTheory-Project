@@ -1,0 +1,44 @@
+t34:
+
+(4-4-2018 16:55:25) End of graph output
+
+(4-4-2018 16:55:25) Launching Tree Decomposition Detection Algorithm...
+(4-4-2018 16:55:25) G is small enough to permit brute-force evaluation.
+(4-4-2018 16:55:25) Launching dynamic programming algorithm for treewidth...
+
+(4-4-2018 16:55:25) Iteration: 1
+
+(4-4-2018 16:55:25) Iteration: 2
+
+(4-4-2018 16:55:25) Iteration: 3
+
+(4-4-2018 16:55:27) Iteration: 4
+
+(4-4-2018 16:58:37) Iteration: 5
+
+(4-4-2018 19:30:57) Iteration: 6
+
+
+grid55:
+
+
+(4-4-2018 16:55:39) Launching Tree Decomposition Detection Algorithm...
+(4-4-2018 16:55:39) G is small enough to permit brute-force evaluation.
+(4-4-2018 16:55:39) Launching dynamic programming algorithm for treewidth...
+
+(4-4-2018 16:55:39) Iteration: 1
+
+(4-4-2018 16:55:39) Iteration: 2
+
+(4-4-2018 16:55:39) Iteration: 3
+
+(4-4-2018 16:55:39) Iteration: 4
+
+(4-4-2018 16:55:50) Iteration: 5
+
+(4-4-2018 17:2:10) Iteration: 6
+
+(4-4-2018 18:11:37) Iteration: 7
+
+(5-4-2018 4:54:12) Iteration: 8
+
