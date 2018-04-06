@@ -423,15 +423,15 @@ The results of experiments are divided into those concerning small, large and ra
 
 \subsection{Small Graphs}
 
-The small graphs tested produced highly similar results between the two implementations. For the purpose of these experiments, all graphs excluding the final four are considered ``small''. The dynamic programming and Sage approaches were able to compute the treewidth of nearly all graphs in under 1 second. The graph $Cube_{4}$ was processed by both implementations in approximately 6 seconds. 
-
-The only difference in performance in this set of inputs was on the graph $Spanning Tree$. $Spanning Tree$ was processed instantenously by Sage, whereas the dynamic programming approach took approximately 3 seconds. It is anticipated that the Sage imeplementation outperformed the dynamic programming approach due to its preprocessing of the input. Many known results including those mentioned in this work can be used to optimize an algorithm for treewidth. The optimizations used by the treewidth algorithm in Sage likely give the implementation an advantage over the standard dynamic programming approach.
-
 \begin{figure*}[!bp]
 \centering
 \includegraphics[scale=1.0]{large-graph-metrics}
 \caption{Dynammic Programming Performance against Large Graphs}
 \end{figure*}
+
+The small graphs tested produced highly similar results between the two implementations. For the purpose of these experiments, all graphs excluding the final four are considered ``small''. The dynamic programming and Sage approaches were able to compute the treewidth of nearly all graphs in under 1 second. The graph $Cube_{4}$ was processed by both implementations in approximately 6 seconds.
+
+The only difference in performance in this set of inputs was on the graph $Spanning Tree$. $Spanning Tree$ was processed instantenously by Sage, whereas the dynamic programming approach took approximately 3 seconds. It is anticipated that the Sage imeplementation outperformed the dynamic programming approach due to its preprocessing of the input. Many known results including those mentioned in this work can be used to optimize an algorithm for treewidth. The optimizations used by the treewidth algorithm in Sage likely give the implementation an advantage over the standard dynamic programming approach.
 
 \subsection{Large Graphs}
 
