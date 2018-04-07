@@ -1,7 +1,7 @@
 #ifndef _BODLAENDER12_H_
 #define _BODLAENDER12_H_
 
-// Code that is relevant to Bodlaender's 2010 Tree Width Dynamic Programming Algorithm (exponential time)
+// Code that is relevant to Bodlaender's 2012 Tree Width Dynamic Programming Algorithm (exponential time)
 #include "ProjectUtil.h"
 
 typedef struct {
@@ -18,6 +18,3 @@ treewidth_pair_t* find_set_in_candidate(int size, node_t* head, int new_vtx, gen
 bool all_present(int n, node_t* head1, node_t* head2);
 
 #endif
-
-// is there a way to get tw without decomposition? Is that useful?
-// Clarify why treewidth is a popular parameter and why it is useful for dynamic programming

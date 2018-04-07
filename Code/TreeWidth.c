@@ -4,14 +4,13 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
     // given G = (V,E) and k, determine if G has a treewidth bounded by k
     // if yes, give the decomposition
     // This comes from Bodlaender 1992.
-    // this seems programatically correct but it is unclear if it is capturing the spirit of the algorithm.
-
 
     if(g_vertices <= SMALL_GRAPH_SIZE) {
         get_decomp_brute_force(decomposition, graph, g_vertices, g_edges, k);
         return;
     }
 
+    // From this point onwards, the code is not fully functional. The code is Bodlaender's 1992 linear time tree decomposition algorithm 
     double degree_threshold = fmax( (k*k + 4*k + 4), ceil( (k*2)/C1 ) );
     int num_friendly_vertices;
 
@@ -72,14 +71,3 @@ void get_tree_decomposition(tree_decomp_t **decomposition, graph_t **graph, int 
         }
     }
 }
-
-/* to finish alg:
-*/
-
-
-/* now:
-- run the alg
-- test against sage, get more graphs
-- put together slides
-- put together report
-*/

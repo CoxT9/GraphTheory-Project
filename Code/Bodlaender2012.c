@@ -12,7 +12,6 @@ int found_in_tw_pair(treewidth_pair_t* curr_pair, int v) {
 }
 
 int get_treewidth_dp(graph_t **graph) {
-    out("Launching dynamic programming algorithm for treewidth...\n");
     int n = (*graph)->num_vertices;
     int upper_bound = n-1;
     int* clique_vertices;
@@ -268,7 +267,8 @@ void max_clique_recurse(graph_t **graph, int *curr_clique, int *curr_size, int *
 }
 
 int max_clique(graph_t **graph, int** clique_vertices) {
-    // credit to Martin Broadhurst
+    // credit to Martin Broadhurst for max clique algorithm
+    // http://www.martinbroadhurst.com/maximum-clique-using-backtracking-in-c.html
     int max_size = 0;
     int curr_size = 0;
     int* curr_clique = malloc((*graph)->num_vertices*sizeof(int));
@@ -279,7 +279,7 @@ int max_clique(graph_t **graph, int** clique_vertices) {
 }
 
 void get_decomp_brute_force(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
-    out("G is small enough to permit brute-force evaluation.");
+    out("Launching Dynamic Programming Algorithm for Tree Decomposition...");
     int tw = get_treewidth_dp(graph);
     sprintf(out_buffer, "Exponential Time Dynamic Programming Yielded a Tree-Width Result of %d\n", tw);
     out(out_buffer);

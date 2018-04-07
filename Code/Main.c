@@ -1,14 +1,4 @@
-/* Given a graph G, does G have a bounded tree width? If so, give the (minimum) tree decomposition of G
-
-NOW:
-- Gather a suite of results
-Presentation:
-- proofs
-- algorithms
-- the process
-- there is definitely 20 minutes here. Look at how cool the algorithms are!
-- report: two implementations and compare. One worked one didnt. Why? Tradeoffs?
-*/
+/* Given a graph G and a value k, is tw(G) <= k? */
 
 #include "Main.h"
 
@@ -39,10 +29,9 @@ int main(int argc, char** argv) {
     tree_width_bounded = graph_has_bounded_tw(&graph, tw_k);
 
     sprintf(out_buffer, "G has bounded tree width: %d", tree_width_bounded);
-    // output the tree decomposition here
+
     out(out_buffer);
 
-    // ...
     return EXIT_SUCCESS;
 }
 

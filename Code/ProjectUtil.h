@@ -47,7 +47,7 @@ typedef struct {
 
 typedef struct {
   int treewidth_bounded;
-  nested_node_t* vertex_subsets; // this is going to be a linked list of linked lists. each Xi contains n_i vertices
+  nested_node_t* vertex_subsets; // this is going to be a linked list of linked lists. each bag Xi contains n_i vertices
   tree_node_t* tree_root;
 } tree_decomp_t;
 
