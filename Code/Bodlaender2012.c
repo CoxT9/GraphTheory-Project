@@ -280,7 +280,13 @@ int max_clique(graph_t **graph, int** clique_vertices) {
 
 void get_decomp_brute_force(tree_decomp_t **decomposition, graph_t **graph, int g_vertices, int g_edges, int k) {
     out("Launching Dynamic Programming Algorithm for Tree Decomposition...");
-    int tw = get_treewidth_dp(graph);
+    int tw;
+    if((*graph)->num_edges == (*graph)->num_vertices-1) {
+        out("Early exit: G is a tree.\n");      
+        tw = 1;
+    } else {
+        tw = get_treewidth_dp(graph);
+    }
     sprintf(out_buffer, "Exponential Time Dynamic Programming Yielded a Tree-Width Result of %d\n", tw);
     out(out_buffer);
     (*decomposition)->treewidth_bounded = tw <= k; // bounded: G has a tw upper bound of k

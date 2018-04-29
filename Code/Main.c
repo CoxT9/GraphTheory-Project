@@ -7,7 +7,6 @@ int main(int argc, char** argv) {
     int tree_width_bounded = 0; 
 
     if(argc != REQUIRED_ARGS + 1) {
-        printf("%d\n", argc);
         sprintf(out_buffer, BAD_ARGS_STR, argv[0]);
         out(out_buffer);
         return EXIT_SUCCESS;
